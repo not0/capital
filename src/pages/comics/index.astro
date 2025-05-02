@@ -1,0 +1,47 @@
+---
+import comics from "../../data/comics.json";
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>漫画一覧</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">漫画一覧</h1>
+        <div class="columns is-multiline">
+          {
+            comics.map((comic) => (
+              <div class="column is-one-third" key={comic.id}>
+                <div class="card">
+                  <a
+                    class="card-link"
+                    href={`${import.meta.env.BASE_URL}/comics/${comic.id}`}
+                  >
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <img
+                          src={`${import.meta.env.BASE_URL}/assets/comics/${comic.id}/thumbnail.${comic.ext}`}
+                          alt={comic.title}
+                        />
+                      </figure>
+                    </div>
+                    <div class="card-content">
+                      <p class="title is-5">{comic.title}</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

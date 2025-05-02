@@ -1,18 +1,18 @@
 ---
-import fs from 'fs';
-import path from 'path';
-import comics from '../../data/comics.json';
+import fs from "fs";
+import path from "path";
+import comics from "../../data/comics.json";
 
 export async function getStaticPaths() {
-  return comics.map(comic => ({
-    params: { id: String(comic.id) }
+  return comics.map((comic) => ({
+    params: { id: String(comic.id) },
   }));
 }
 
 const { id } = Astro.params;
-const comic = comics.find(c => String(c.id) === id);
+const comic = comics.find((c) => String(c.id) === id);
 
-const pagesDir = path.resolve('./public/assets/comics/', id, 'pages');
+const pagesDir = path.resolve("./public/assets/comics/", id, "pages");
 let pages = [];
 try {
   pages = fs.readdirSync(pagesDir).sort();
@@ -27,19 +27,21 @@ try {
     <title>{comic.title} {id}</title>
   </head>
   <body>
-  <section>
+    <section>
       <h1>{comic.title}</h1>
       <p>{comic.description}</p>
     </section>
 
     <section>
-      {pages.map(name => (
-        <img
-          src={`${import.meta.env.BASE_URL}/assets/comics/${id}/pages/${name}`}
-          alt={name}
-          loading="lazy"
-        />
-      ))}
+      {
+        pages.map((name) => (
+          <img
+            src={`${import.meta.env.BASE_URL}/assets/comics/${id}/pages/${name}`}
+            alt={name}
+            loading="lazy"
+          />
+        ))
+      }
     </section>
   </body>
 </html>

@@ -1,0 +1,23 @@
+---
+import comics from '../../data/comics.json';
+
+export async function getStaticPaths() {
+  return comics.map(comic => ({
+    params: { id: String(comic.id)}
+  }))
+}
+
+const { id } = Astro.params;
+const comic = comics.find(c => String(c.id) === id)
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{comic.title} {id}</title>
+  </head>
+  <body>
+    <h1>{comic.title} （ID: {id}）</h1>
+    <p>このページは <code>/comics/{id}</code> というURLに対応しています。</p>
+  </body>
+</html>

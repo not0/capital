@@ -1,6 +1,7 @@
 ---
 import fs from "fs";
 import path from "path";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import comics from "../../data/comics.json";
 
 export async function getStaticPaths() {
@@ -21,27 +22,21 @@ try {
 }
 ---
 
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{comic.title} {id}</title>
-  </head>
-  <body>
-    <section>
-      <h1>{comic.title}</h1>
-      <p>{comic.description}</p>
-    </section>
+<BaseLayout title={`${comic.title}`}>
+  <section>
+    <h1>{comic.title}</h1>
+    <p>{comic.description}</p>
+  </section>
 
-    <section>
-      {
-        pages.map((name) => (
-          <img
-            src={`${import.meta.env.BASE_URL}/assets/comics/${id}/pages/${name}`}
-            alt={name}
-            loading="lazy"
-          />
-        ))
-      }
-    </section>
-  </body>
-</html>
+  <section>
+    {
+      pages.map((name) => (
+        <img
+          src={`${import.meta.env.BASE_URL}/assets/comics/${id}/pages/${name}`}
+          alt={name}
+          loading="lazy"
+        />
+      ))
+    }
+  </section>
+</BaseLayout>

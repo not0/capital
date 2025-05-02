@@ -1,5 +1,6 @@
 ---
 const base = import.meta.env.BASE_URL;
+const { title = "" } = Astro.props;
 ---
 
 <html lang="ja">
@@ -9,7 +10,7 @@ const base = import.meta.env.BASE_URL;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
-    <title>トップページ</title>
+    <title>{title}</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
@@ -31,6 +32,7 @@ const base = import.meta.env.BASE_URL;
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-menu is-active">
         <div class="navbar-start">
+          <a class="navbar-item" href={`${base}`}>トップ</a>
           <a class="navbar-item" href={`${base}/comics`}>漫画</a>
         </div>
       </div>

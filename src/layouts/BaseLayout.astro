@@ -38,6 +38,10 @@ const { title = "" } = Astro.props;
       </div>
     </nav>
 
-    <slot />
+    <div
+      style={`background: url('${base}/assets/lined_paper.png') repeat; min-height: 100vh;`}
+    >
+      <slot />
+    </div>
   </body>
 </html>

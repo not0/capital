@@ -20,23 +20,30 @@ try {
 } catch (err) {
   console.error(`Error reading images for comic ID ${id}:`, err);
 }
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title={`${comic.title}`}>
-  <section>
-    <h1>{comic.title}</h1>
-    <p>{comic.description}</p>
+  <section class="section">
+    <div class="container has-text-centered">
+      <h1 class="title is-3">{comic.title}</h1>
+      <p class="subtitle is-6">{comic.description}</p>
+    </div>
   </section>
 
-  <section>
-    {
-      pages.map((name) => (
-        <img
-          src={`${import.meta.env.BASE_URL}/assets/comics/${id}/pages/${name}`}
-          alt={name}
-          loading="lazy"
-        />
-      ))
-    }
+  <section class="section" style="padding-top: 0;">
+    <div class="container" style="max-width: 800px; margin: auto;">
+      {
+        pages.map((name) => (
+          <img
+            src={`${base}/assets/comics/${id}/pages/${name}`}
+            alt={name}
+            loading="lazy"
+            style="width: 100%; margin-bottom: 1.5rem;"
+          />
+        ))
+      }
+    </div>
   </section>
 </BaseLayout>

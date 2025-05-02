@@ -1,16 +1,47 @@
 ---
-
+const base = import.meta.env.BASE_URL;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>トップページ</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <style>
+      .navbar {
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+      .navbar .navbar-item {
+        color: white;
+      }
+      .navbar .navbar-item:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+
+  <body
+    style={`
+    background: url('${base}/assets/top/background.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    color: white;
+  `}
+  >
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-menu is-active">
+        <div class="navbar-start">
+          <a class="navbar-item" href={`${base}/comics`}>漫画一覧</a>
+        </div>
+      </div>
+    </nav>
+  </body>
 </html>

@@ -5,6 +5,8 @@ import comics from "../../data/comics.json";
 const sortedComics = comics
   .slice()
   .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="漫画">
@@ -16,14 +18,11 @@ const sortedComics = comics
           sortedComics.map((comic) => (
             <div class="column is-one-third" key={comic.id}>
               <div class="card">
-                <a
-                  class="card-link"
-                  href={`${import.meta.env.BASE_URL}/comics/${comic.id}`}
-                >
+                <a class="card-link" href={`${base}/comics/${comic.id}`}>
                   <div class="card-image">
                     <figure class="image is-4by3">
                       <img
-                        src={`${import.meta.env.BASE_URL}/assets/comics/${comic.id}/thumbnail.${comic.ext}`}
+                        src={`${base}/assets/comics/${comic.id}/thumbnail.${comic.ext}`}
                         alt={comic.title}
                       />
                     </figure>

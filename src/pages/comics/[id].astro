@@ -2,16 +2,23 @@
 import fs from "fs";
 import path from "path";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import comics from "../../data/comics.json";
+import { getAllComics, getComicById } from "../../models/comic";
+
+const base = import.meta.env.BASE_URL;
 
 export async function getStaticPaths() {
+  const comics = getAllComics();
   return comics.map((comic) => ({
     params: { id: String(comic.id) },
   }));
 }
 
 const { id } = Astro.params;
-const comic = comics.find((c) => String(c.id) === id);
+const comic =
+  getComicById(id) ??
+  (() => {
+    throw new Error(`Comic with ID ${id} not found`);
+  })();
 
 const pagesDir = path.resolve("./public/assets/comics/", id, "pages");
 let pages = [];
@@ -20,8 +27,6 @@ try {
 } catch (err) {
   console.error(`Error reading images for comic ID ${id}:`, err);
 }
-
-const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title={`${comic.title}`}>
@@ -40,7 +45,7 @@ const base = import.meta.env.BASE_URL;
             src={`${base}/assets/comics/${id}/pages/${name}`}
             alt={name}
             loading="lazy"
-            style="width: 100%; margin-bottom: 2rem;"
+            style="width: 100%; margin-bottom: 3rem;"
           />
         ))
       }

@@ -1,0 +1,28 @@
+---
+import fs from "fs";
+import path from "path";
+const { id, base } = Astro.props;
+
+const pagesDir = path.resolve("./public/assets/comics/", id, "pages");
+let pages: string[] = [];
+try {
+  pages = fs.readdirSync(pagesDir).sort();
+} catch (err) {
+  console.error(`Error reading images for comic ID ${id}:`, err);
+}
+---
+
+<section class="section" style="padding-top: 0;">
+  <div class="container" style="max-width: 800px; margin: auto;">
+    {
+      pages.map((name: string) => (
+        <img
+          src={`${base}/assets/comics/${id}/pages/${name}`}
+          alt={name}
+          loading="lazy"
+          style="width: 100%; margin-bottom: 3rem;"
+        />
+      ))
+    }
+  </div>
+</section>

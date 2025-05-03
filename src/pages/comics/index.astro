@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import comics from "../../data/comics.json";
+
+const sortedComics = comics
+  .slice()
+  .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
 ---
 
 <BaseLayout title="漫画">
@@ -9,7 +13,7 @@ import comics from "../../data/comics.json";
       <h1 class="title">漫画一覧</h1>
       <div class="columns is-multiline">
         {
-          comics.map((comic) => (
+          sortedComics.map((comic) => (
             <div class="column is-one-third" key={comic.id}>
               <div class="card">
                 <a

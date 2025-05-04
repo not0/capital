@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import {
+  getAllComics,
+  getComicById,
+  getEpisodeByComicIdAndNumber,
+} from "../../../../models/comic";
+import Pages from "../../../../components/comics/Pages.astro";
+
+export async function getStaticPaths() {
+  const comics = getAllComics();
+  const paths = [];
+
+  for (const comic of comics) {
+    for (const episode of comic.episodes) {
+      paths.push({
+        params: {
+          comicId: String(comic.id),
+          number: String(episode.number),
+        },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { comicId, number } = Astro.params;
+const comic =
+  getComicById(comicId) ??
+  (() => {
+    throw new Error(`Comic with ID ${id} not found`);
+  })();
+
+const episode =
+  getEpisodeByComicIdAndNumber(comicId, parseInt(number)) ??
+  (() => {
+    throw new Error(`Episode with number ${number} not found`);
+  })();
+---
+
+<BaseLayout title={`${comic.title} ${episode.title}`}>
+  <Pages comicId={comicId} episodeNumber={number} />
+  }
+</BaseLayout>

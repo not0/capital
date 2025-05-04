@@ -4,8 +4,6 @@ import { getAllComics, getComicById } from "../../models/comic";
 import Pages from "../../components/comics/Pages.astro";
 import Episodes from "../../components/comics/Episodes.astro";
 
-const base = import.meta.env.BASE_URL;
-
 export async function getStaticPaths() {
   const comics = getAllComics();
   return comics.map((comic) => ({

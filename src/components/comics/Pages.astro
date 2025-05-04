@@ -1,14 +1,14 @@
 ---
 import fs from "fs";
 import path from "path";
-const { comicId, episodeId } = Astro.props as {
+const { comicId, episodeNumber } = Astro.props as {
   comicId: string;
-  episodeId?: string;
+  episodeNumber?: string;
 };
 const base = import.meta.env.BASE_URL;
 
-const pagesPath = episodeId
-  ? `/assets/comics/${comicId}/episodes/${episodeId}/pages`
+const pagesPath = episodeNumber
+  ? `/assets/comics/${comicId}/episodes/${episodeNumber}/pages`
   : `/assets/comics/${comicId}/pages`;
 
 const pagesDir = path.resolve(`./public${pagesPath}`);

@@ -29,11 +29,5 @@ const comic =
     </div>
   </section>
 
-  {
-    comic.episodes.length > 0 ? (
-      <Episodes comic={comic} />
-    ) : (
-      <Pages id={id} base={base} />
-    )
-  }
+  {comic.episodes.length > 0 ? <Episodes comic={comic} /> : <Pages id={id} />}
 </BaseLayout>

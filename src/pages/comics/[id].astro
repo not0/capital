@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getAllComics, getComicById } from "../../models/comic";
 import Pages from "../../components/comics/Pages.astro";
+import Episodes from "../../components/comics/Episodes.astro";
 
 const base = import.meta.env.BASE_URL;
 
@@ -28,5 +29,11 @@ const comic =
     </div>
   </section>
 
-  <Pages id={id} base={base} />
+  {
+    comic.episodes.length > 0 ? (
+      <Episodes comic={comic} />
+    ) : (
+      <Pages id={id} base={base} />
+    )
+  }
 </BaseLayout>

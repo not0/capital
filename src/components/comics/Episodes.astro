@@ -1,0 +1,39 @@
+---
+import { getEpisodesByComicId } from "../../models/comic";
+
+const { comic } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const episodes = getEpisodesByComicId(comic.id);
+---
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      {
+        episodes.map((episode) => (
+          <div class="column is-one-third">
+            <div class="card">
+              <a
+                class="card-link"
+                href={`${base}/comics/${comic.id}/episodes/${episode.number}`}
+              >
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img
+                      src={`${base}/assets/comics/${comic.id}//episodes/${episode.number}/thumbnail.${episode.ext}`}
+                      alt={episode.title}
+                    />
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <p class="title is-5">{episode.title}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

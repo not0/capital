@@ -18,6 +18,12 @@ export function getComicById(id: string): Comic | undefined {
   return comics.find((c) => c.id === id);
 }
 
+export function getEpisodesByComicId(comicId: string): Episode[] {
+  const comic = getComicById(comicId);
+  if (!comic) return [];
+  return comic.episodes;
+}
+
 export function getEpisodeByComicIdAndNumber(
   comicId: string,
   episodeNumber: number

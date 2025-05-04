@@ -1,14 +1,9 @@
-import raw from "../data/comics.json" assert { type: "json" };
+
+import { comics } from "../data/comics";
 import type { Comic } from "../types/comic";
 import type { Episode } from "../types/episode";
 
-const comics: Comic[] = raw.map(
-  (c): Comic => ({
-    ...c,
-    updatedAt: new Date(c.updatedAt),
-    episodes: c.episodes,
-  })
-);
+
 
 export function getAllComics(): Comic[] {
   return comics;

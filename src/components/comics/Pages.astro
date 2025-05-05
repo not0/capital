@@ -26,15 +26,30 @@ if (pages.length === 0) {
 }
 ---
 
-<div class="container" style="max-width: 800px">
+<style>
+  .image-wrapper {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+</style>
+
+<div class="container">
   {
-    pages.map((name: string) => (
-      <img
-        src={`${base}${pagesPath}/${name}`}
-        alt={name}
-        loading="lazy"
-        style="width: 100%; margin-bottom: 3rem;"
-      />
+    pages.map((name: string, idx: number) => (
+      <div class="image-wrapper">
+        <div
+          class="skeleton-block"
+          id={`skeleton-${idx}`}
+          style="height: 70vh;"
+        />
+        <img
+          src={`${base}${pagesPath}/${name}`}
+          alt={name}
+          loading="lazy"
+          style="width: 100%; display: block;"
+          onload={`document.getElementById('skeleton-${idx}').style.display='none';`}
+        />
+      </div>
     ))
   }
 </div>

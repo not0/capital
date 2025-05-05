@@ -14,7 +14,7 @@ export const comics: Comic[] = [
     title: "南極伝説",
     description: "なんか北極伝説みたいな漫画に対抗して描いた記憶がある。",
     thumbnailExt: "png",
-    updatedAt: new Date("2025-01-02T00:00:00+09:00"),
+    updatedAt: new Date("2025-01-12T00:00:00+09:00"),
     episodes: [
       {
         number: 1,
@@ -39,6 +39,14 @@ export const comics: Comic[] = [
     description: "",
     thumbnailExt: "gif",
     updatedAt: new Date("2025-01-05T00:00:00+09:00"),
+    episodes: [],
+  },
+  {
+    id: "6",
+    title: "未来のビデオゲーム バーチャル8",
+    description: "一日で描いてコミティアで配った漫画",
+    thumbnailExt: "png",
+    updatedAt: new Date("2025-01-11T00:00:00+09:00"),
     episodes: [],
   },
   {
@@ -169,6 +177,105 @@ export const comics: Comic[] = [
     description: "ビッグサイトで将棋大会へ向かうこともだちを横目に描いた作品",
     thumbnailExt: "jpeg",
     updatedAt: new Date("2025-01-10T00:00:00+09:00"),
+    episodes: [],
+  },
+  {
+    id: "14",
+    title: "妖怪バスターズZ",
+    description: "",
+    thumbnailExt: "png",
+    updatedAt: new Date("2025-01-12T00:00:00+09:00"),
+    episodes: [],
+  },
+  {
+    id: "15",
+    title: "究極兵器アルティメットサンライズ",
+    description: "本格SF",
+    thumbnailExt: "png",
+    updatedAt: new Date("2025-01-13T00:00:00+09:00"),
+    episodes: [
+      {
+        number: 1,
+        title: "第1話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 2,
+        title: "第2話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 3,
+        title: "第3話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 4,
+        title: "第4話",
+        thumbnailExt: "png",
+      },
+    ],
+  },
+  {
+    id: "16",
+    title: "蛮族VS貴族",
+    description:
+      "COMITIA126で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
+    thumbnailExt: "png",
+    updatedAt: new Date("2025-01-14T00:00:00+09:00"),
+    episodes: [],
+  },
+  {
+    id: "17",
+    title: "スカイフィッシュ捕獲ロボット開発秘話",
+    description:
+      "COMITIA127で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
+    thumbnailExt: "png",
+    updatedAt: new Date("2025-01-15T00:00:00+09:00"),
+    episodes: [],
+  },
+  {
+    id: "18",
+    title: "令和未解決事件推理スペシャル",
+    description:
+      "COMITIA128で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
+    thumbnailExt: "png",
+    updatedAt: new Date("2025-01-16T00:00:00+09:00"),
+    episodes: [
+      {
+        number: 1,
+        title: "怪人バスター殺人事件 -事件編-",
+        thumbnailExt: "png",
+      },
+      {
+        number: 2,
+        title: "怪人バスター殺人事件 -解決編-",
+        thumbnailExt: "png",
+      },
+      {
+        number: 3,
+        title: "七大魔剣殺人事件 -事件編-",
+        thumbnailExt: "png",
+      },
+      {
+        number: 4,
+        title: "七大魔剣殺人事件 -解決編-",
+        thumbnailExt: "png",
+      },
+      {
+        number: 5,
+        title: "令和未解決事件解決編",
+        thumbnailExt: "jpg",
+      },
+    ],
+  },
+  {
+    id: "19",
+    title: "クソ漫画ピックアップガチャ",
+    description:
+      "COMITIA131で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
+    thumbnailExt: "png",
+    updatedAt: new Date("2025-01-17T00:00:00+09:00"),
     episodes: [],
   },
 ];

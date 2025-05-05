@@ -21,22 +21,20 @@ try {
 
 if (pages.length === 0) {
   throw new Error(
-    `No images found for comic ID ${comicId} in directory ${pagesDir}`,
+    `No images found for comic ID ${comicId} in directory ${pagesDir}`
   );
 }
 ---
 
-<section class="section" style="padding-top: 0;">
-  <div class="container" style="max-width: 800px; margin: auto;">
-    {
-      pages.map((name: string) => (
-        <img
-          src={`${base}/${pagesPath}/${name}`}
-          alt={name}
-          loading="lazy"
-          style="width: 100%; margin-bottom: 3rem;"
-        />
-      ))
-    }
-  </div>
-</section>
+<div class="container" style="max-width: 800px">
+  {
+    pages.map((name: string) => (
+      <img
+        src={`${base}/${pagesPath}/${name}`}
+        alt={name}
+        loading="lazy"
+        style="width: 100%; margin-bottom: 3rem;"
+      />
+    ))
+  }
+</div>

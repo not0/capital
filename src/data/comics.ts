@@ -34,6 +34,112 @@ export const comics: Comic[] = [
     ],
   },
   {
+    id: "4",
+    title: "機動ロボットエンドレスダーク",
+    description: "",
+    thumbnailExt: "gif",
+    updatedAt: new Date("2025-01-05T00:00:00+09:00"),
+    episodes: [],
+  },
+  {
+    id: "8",
+    title: "妖怪探偵 怪堂奇次郎",
+    description:
+      "2014年末にみんなで1000P漫画を描く企画やったときに描いたクソマンガ",
+    thumbnailExt: "png",
+    updatedAt: new Date("2025-01-07T00:00:00+09:00"),
+    episodes: [
+      {
+        number: 1,
+        title: "第一話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 2,
+        title: "第二話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 3,
+        title: "第三話",
+        thumbnailExt: "png",
+      },
+    ],
+  },
+  {
+    id: "7",
+    title: "戦闘人 - SOUL OF HUMAN -",
+    description:
+      "2014年末にみんなで1000P漫画を描く企画をやったときに描いた連作",
+    thumbnailExt: "png",
+    updatedAt: new Date("2025-01-08T00:00:00+09:00"),
+    episodes: [
+      {
+        number: 1,
+        title: "第1話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 2,
+        title: "第2話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 3,
+        title: "第3話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 4,
+        title: "第4話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 5,
+        title: "第5話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 6,
+        title: "第6話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 7,
+        title: "第7話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 8,
+        title: "第8話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 9,
+        title: "第9話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 10,
+        title: "第10話",
+        thumbnailExt: "png",
+      },
+      {
+        number: 11,
+        title: "超戦闘人 爆シード",
+        thumbnailExt: "png",
+      },
+    ],
+  },
+  {
+    id: "9",
+    title: "新世紀超時空多次元サッカープラズマイレブン",
+    description: "",
+    thumbnailExt: "png",
+    updatedAt: new Date("2025-01-06T00:00:00+09:00"),
+    episodes: [],
+  },
+  {
     id: "10",
     title: "ノトデンジセカンドインプレッションで描いたやつ",
     description: "いつぞやのコミティアで出した",
@@ -42,11 +148,27 @@ export const comics: Comic[] = [
     episodes: [],
   },
   {
+    id: "11",
+    title: "ゲームのプロモ企画で裏サンデーに出した漫画",
+    description: "リリース前だったので内容はよく知りません",
+    thumbnailExt: "png",
+    updatedAt: new Date("2025-01-09T00:00:00+09:00"),
+    episodes: [],
+  },
+  {
     id: "12",
     title: "超絶最強バトル漫画集",
     description: "マウス本でコミティアで出したやつ",
     thumbnailExt: "png",
-    updatedAt: new Date("2025-01-03T00:00:00+09:00"),
+    updatedAt: new Date("2025-01-04T00:00:00+09:00"),
+    episodes: [],
+  },
+  {
+    id: "13",
+    title: "王＜キング＞こども将棋",
+    description: "ビッグサイトで将棋大会へ向かうこともだちを横目に描いた作品",
+    thumbnailExt: "jpeg",
+    updatedAt: new Date("2025-01-10T00:00:00+09:00"),
     episodes: [],
   },
 ];

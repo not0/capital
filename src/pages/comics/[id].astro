@@ -17,6 +17,8 @@ const comic =
   (() => {
     throw new Error(`Comic with ID ${id} not found`);
   })();
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title={`${comic.title}`}>
@@ -25,13 +27,16 @@ const comic =
       <h1 class="title is-3">{comic.title}</h1>
       <p class="subtitle is-6">{comic.description}</p>
     </div>
-  </section>
 
-  {
-    comic.episodes.length > 0 ? (
-      <Episodes comic={comic} />
-    ) : (
-      <Pages comicId={id} />
-    )
-  }
+    {
+      comic.episodes.length > 0 ? (
+        <Episodes comic={comic} />
+      ) : (
+        <Pages comicId={id} />
+      )
+    }
+    <div class="buttons is-centered">
+      <a class="button" href={`${base}/comics/${comic.id}`}> 一覧に戻る </a>
+    </div>
+  </section>
 </BaseLayout>

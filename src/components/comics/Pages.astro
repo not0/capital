@@ -8,10 +8,10 @@ const { comicId, episodeNumber } = Astro.props as {
 const base = import.meta.env.BASE_URL;
 
 const pagesPath = episodeNumber
-  ? `/assets/comics/${comicId}/episodes/${episodeNumber}/pages`
-  : `/assets/comics/${comicId}/pages`;
+  ? `assets/comics/${comicId}/episodes/${episodeNumber}/pages`
+  : `assets/comics/${comicId}/pages`;
 
-const pagesDir = path.resolve(`./public${pagesPath}`);
+const pagesDir = path.resolve(`./public/${pagesPath}`);
 let pages: string[] = [];
 try {
   pages = fs.readdirSync(pagesDir).sort();

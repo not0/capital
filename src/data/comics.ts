@@ -35,5 +35,13 @@ export const comics: Comic[] = [
     ext: "png",
     updatedAt: new Date("2025-01-02T00:00:00+09:00"),
     episodes: [],
-  }
+  },
+  {
+    id: "12",
+    title: "超絶最強バトル漫画集",
+    description: "マウス本でコミティアで出したやつ",
+    ext: "png",
+    updatedAt: new Date("2025-01-03T00:00:00+09:00"),
+    episodes: [],
+  },
 ];

@@ -18,6 +18,12 @@ try {
 } catch (err) {
   console.error(`Error reading images for comic ID ${comicId}:`, err);
 }
+
+if (pages.length === 0) {
+  throw new Error(
+    `No images found for comic ID ${comicId} in directory ${pagesDir}`,
+  );
+}
 ---
 
 <section class="section" style="padding-top: 0;">

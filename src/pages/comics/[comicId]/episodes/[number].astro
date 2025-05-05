@@ -60,11 +60,17 @@ const base = import.meta.env.BASE_URL;
             class="button"
             href={`${base}/comics/${comic.id}/episodes/${episode.number - 1}`}
           >
-            前の話
+            <span class="icon">
+              <i class="fas fa-arrow-left" />
+            </span>
+            <span>前の話</span>
           </a>
         ) : (
           <a class="button" disabled>
-            前の話
+            <span class="icon">
+              <i class="fas fa-arrow-left" />
+            </span>
+            <span>前の話</span>
           </a>
         )
       }
@@ -81,11 +87,17 @@ const base = import.meta.env.BASE_URL;
             class="button"
             href={`${base}/comics/${comic.id}/episodes/${episode.number + 1}`}
           >
-            次の話
+            <span>次の話</span>
+            <span class="icon">
+              <i class="fas fa-arrow-right" />
+            </span>
           </a>
         ) : (
           <a class="button" disabled>
-            次の話
+            <span>次の話</span>
+            <span class="icon">
+              <i class="fas fa-arrow-right" />
+            </span>
           </a>
         )
       }

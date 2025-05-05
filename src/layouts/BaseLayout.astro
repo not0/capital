@@ -19,16 +19,17 @@ const { title = "" } = Astro.props;
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <style>
+      .navbar {
+        --bulma-navbar-background-color: #f2711c;
+      }
+    </style>
   </head>
 
   <body>
-    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-black" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href={`${base}`}>
-          <span class="icon">
-            <i class="fas fa-home"></i>
-          </span>
-        </a>
+        <a class="navbar-item" href={`${base}`}> トップ </a>
         <a class="navbar-item" href={`${base}/comics`}>漫画</a>
         <a class="navbar-item" href={`${base}/profile`}>のと</a>
         <a class="navbar-item" href={`${base}/specials`}>その他</a>

@@ -4,34 +4,10 @@ export const comics: Comic[] = [
   {
     id: "1",
     title: "女子カバディ部",
-    description: "なんか企画で描いたやつ。",
+    description: "なんか企画で描いたやつ",
     thumbnailExt: "gif",
     updatedAt: new Date("2025-01-01T00:00:00+09:00"),
     episodes: [],
-  },
-  {
-    id: "2",
-    title: "南極伝説",
-    description: "なんか北極伝説みたいな漫画に対抗して描いた記憶がある。",
-    thumbnailExt: "png",
-    updatedAt: new Date("2025-01-12T00:00:00+09:00"),
-    episodes: [
-      {
-        number: 1,
-        title: "第1話",
-        thumbnailExt: "gif",
-      },
-      {
-        number: 2,
-        title: "第2話",
-        thumbnailExt: "gif",
-      },
-      {
-        number: 3,
-        title: "第3話",
-        thumbnailExt: "gif",
-      },
-    ],
   },
   {
     id: "4",
@@ -50,35 +26,9 @@ export const comics: Comic[] = [
     episodes: [],
   },
   {
-    id: "8",
-    title: "妖怪探偵 怪堂奇次郎",
-    description:
-      "2014年末にみんなで1000P漫画を描く企画やったときに描いたクソマンガ",
-    thumbnailExt: "png",
-    updatedAt: new Date("2025-01-07T00:00:00+09:00"),
-    episodes: [
-      {
-        number: 1,
-        title: "第一話",
-        thumbnailExt: "png",
-      },
-      {
-        number: 2,
-        title: "第二話",
-        thumbnailExt: "png",
-      },
-      {
-        number: 3,
-        title: "第三話",
-        thumbnailExt: "png",
-      },
-    ],
-  },
-  {
     id: "7",
     title: "戦闘人 - SOUL OF HUMAN -",
-    description:
-      "2014年末にみんなで1000P漫画を描く企画をやったときに描いた連作",
+    description: "2014年末に複数人で1000P漫画を描く企画で描いた",
     thumbnailExt: "png",
     updatedAt: new Date("2025-01-08T00:00:00+09:00"),
     episodes: [
@@ -142,23 +92,24 @@ export const comics: Comic[] = [
   {
     id: "9",
     title: "新世紀超時空多次元サッカープラズマイレブン",
-    description: "",
+    description:
+      "2014年末にみんなで1000P漫画を描く企画をやったときに描いた連作",
     thumbnailExt: "png",
     updatedAt: new Date("2025-01-06T00:00:00+09:00"),
     episodes: [],
   },
   {
     id: "10",
-    title: "ノトデンジセカンドインプレッションで描いたやつ",
-    description: "いつぞやのコミティアで出した",
+    title: "ノトデンジセカンドインプレッション",
+    description: "ノトデンジというサークルで描いたもの",
     thumbnailExt: "png",
     updatedAt: new Date("2025-01-02T00:00:00+09:00"),
     episodes: [],
   },
   {
     id: "11",
-    title: "ゲームのプロモ企画で裏サンデーに出した漫画",
-    description: "リリース前だったので内容はよく知りません",
+    title: "裏サンデーの企画に投稿した漫画",
+    description: "リリース前のゲームのPR企画。地味に賞金をもらった",
     thumbnailExt: "png",
     updatedAt: new Date("2025-01-09T00:00:00+09:00"),
     episodes: [],
@@ -166,7 +117,7 @@ export const comics: Comic[] = [
   {
     id: "12",
     title: "超絶最強バトル漫画集",
-    description: "マウス本でコミティアで出したやつ",
+    description: "週刊少年マウスという組織でコミティアに出したもの",
     thumbnailExt: "png",
     updatedAt: new Date("2025-01-04T00:00:00+09:00"),
     episodes: [],
@@ -184,7 +135,7 @@ export const comics: Comic[] = [
     title: "妖怪バスターズZ",
     description: "",
     thumbnailExt: "png",
-    updatedAt: new Date("2025-01-12T00:00:00+09:00"),
+    updatedAt: new Date("2025-01-12T10:00:00+09:00"),
     episodes: [],
   },
   {

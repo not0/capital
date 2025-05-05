@@ -229,4 +229,12 @@ export const comics: Comic[] = [
     updatedAt: new Date("2025-01-17T00:00:00+09:00"),
     episodes: [],
   },
+  {
+    id: "20",
+    title: "爆ぜろ!!ロボトム",
+    description: "",
+    thumbnailExt: "webp",
+    updatedAt: new Date("2025-05-05T00:00:00+09:00"),
+    episodes: [],
+  },
 ];

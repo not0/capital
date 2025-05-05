@@ -25,8 +25,13 @@ export const comics: Comic[] = [
         number: 2,
         title: "第2話",
         thumbnailExt: "gif",
-      }
-    ]
+      },
+      {
+        number: 3,
+        title: "第3話",
+        thumbnailExt: "gif",
+      },
+    ],
   },
   {
     id: "10",

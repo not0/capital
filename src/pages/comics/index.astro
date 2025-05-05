@@ -18,11 +18,11 @@ const base = import.meta.env.BASE_URL;
           comics.map((comic) => (
             <div class="column is-one-third" key={comic.id}>
               <div class="card">
-                <a class="card-link" href={`${base}/comics/${comic.id}`}>
+                <a class="card-link" href={`${base}comics/${comic.id}`}>
                   <div class="card-image">
                     <figure class="image is-3by2">
                       <img
-                        src={`${base}/assets/comics/${comic.id}/thumbnail.${comic.thumbnailExt}`}
+                        src={`${base}assets/comics/${comic.id}/thumbnail.${comic.thumbnailExt}`}
                         alt={comic.title}
                       />
                     </figure>

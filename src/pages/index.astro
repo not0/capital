@@ -1,13 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
+console.log(base);
 ---
 
 <BaseLayout title="あのあとにひとつ">
   <section
     class="section"
     style={`
-    background: url('${base}/assets/top/background.png') no-repeat;
+    background: url('${base}assets/top/background.png') no-repeat;
     background-size: cover;
     min-height: 100vh;
   `}

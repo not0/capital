@@ -30,7 +30,7 @@ if (pages.length === 0) {
   {
     pages.map((name: string) => (
       <img
-        src={`${base}/${pagesPath}/${name}`}
+        src={`${base}${pagesPath}/${name}`}
         alt={name}
         loading="lazy"
         style="width: 100%; margin-bottom: 3rem;"

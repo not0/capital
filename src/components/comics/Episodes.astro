@@ -16,12 +16,12 @@ const episodes = getEpisodesByComicId(comic.id);
             <div class="card">
               <a
                 class="card-link"
-                href={`${base}/comics/${comic.id}/episodes/${episode.number}`}
+                href={`${base}comics/${comic.id}/episodes/${episode.number}`}
               >
                 <div class="card-image">
                   <figure class="image is-3by2">
                     <img
-                      src={`${base}/assets/comics/${comic.id}//episodes/${episode.number}/thumbnail.${episode.thumbnailExt}`}
+                      src={`${base}assets/comics/${comic.id}//episodes/${episode.number}/thumbnail.${episode.thumbnailExt}`}
                       alt={episode.title}
                     />
                   </figure>

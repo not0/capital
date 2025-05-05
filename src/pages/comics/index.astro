@@ -3,7 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getAllComics } from "../../models/comic";
 
 const comics = getAllComics().sort(
-  (a, b) => b.updatedAt.getTime() - a.updatedAt.getTime(),
+  (a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()
 );
 
 const base = import.meta.env.BASE_URL;

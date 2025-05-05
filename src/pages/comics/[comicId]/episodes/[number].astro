@@ -42,8 +42,8 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title={`${comic.title} ${episode.title}`}>
-  <div class="container has-text-centered">
-    <section class="section">
+  <section class="section">
+    <div class="container has-text-centered">
       <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
           <li><a href={`${base}/comics/${comic.id}`}>{comic.title}</a></li>
@@ -52,52 +52,52 @@ const base = import.meta.env.BASE_URL;
           </li>
         </ul>
       </nav>
-    </section>
-
-    <Pages comicId={comicId} episodeNumber={number} />
-
-    <div class="buttons is-centered pb-6">
-      {
-        episode.number > 1 ? (
-          <a
-            class="button"
-            href={`${base}/comics/${comic.id}/episodes/${episode.number - 1}`}
-          >
-            <span class="icon">
-              <i class="fas fa-arrow-left" />
-            </span>
-            <span>前の話</span>
-          </a>
-        ) : (
-          <a class="button" disabled>
-            <span class="icon">
-              <i class="fas fa-arrow-left" />
-            </span>
-            <span>前の話</span>
-          </a>
-        )
-      }
-      <a class="button" href={`${base}/comics/${comic.id}`}> 一覧に戻る </a>
-      {
-        episode.number < comic.episodes.length ? (
-          <a
-            class="button"
-            href={`${base}/comics/${comic.id}/episodes/${episode.number + 1}`}
-          >
-            <span>次の話</span>
-            <span class="icon">
-              <i class="fas fa-arrow-right" />
-            </span>
-          </a>
-        ) : (
-          <a class="button" disabled>
-            <span>次の話</span>
-            <span class="icon">
-              <i class="fas fa-arrow-right" />
-            </span>
-          </a>
-        )
-      }
     </div>
+  </section>
+
+  <Pages comicId={comicId} episodeNumber={number} />
+
+  <div class="buttons is-centered pb-6">
+    {
+      episode.number > 1 ? (
+        <a
+          class="button"
+          href={`${base}/comics/${comic.id}/episodes/${episode.number - 1}`}
+        >
+          <span class="icon">
+            <i class="fas fa-arrow-left" />
+          </span>
+          <span>前の話</span>
+        </a>
+      ) : (
+        <a class="button" disabled>
+          <span class="icon">
+            <i class="fas fa-arrow-left" />
+          </span>
+          <span>前の話</span>
+        </a>
+      )
+    }
+    <a class="button" href={`${base}/comics/${comic.id}`}> 一覧に戻る </a>
+    {
+      episode.number < comic.episodes.length ? (
+        <a
+          class="button"
+          href={`${base}/comics/${comic.id}/episodes/${episode.number + 1}`}
+        >
+          <span>次の話</span>
+          <span class="icon">
+            <i class="fas fa-arrow-right" />
+          </span>
+        </a>
+      ) : (
+        <a class="button" disabled>
+          <span>次の話</span>
+          <span class="icon">
+            <i class="fas fa-arrow-right" />
+          </span>
+        </a>
+      )
+    }
   </div>
 </BaseLayout>

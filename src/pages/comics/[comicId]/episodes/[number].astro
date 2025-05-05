@@ -55,11 +55,15 @@ const base = import.meta.env.BASE_URL;
 
     <div class="buttons is-centered">
       {
-        episode.number > 1 && (
+        episode.number > 1 ? (
           <a
             class="button"
             href={`${base}/comics/${comic.id}/episodes/${episode.number - 1}`}
           >
+            前の話
+          </a>
+        ) : (
+          <a class="button" disabled>
             前の話
           </a>
         )
@@ -72,11 +76,15 @@ const base = import.meta.env.BASE_URL;
         )
       }
       {
-        episode.number < comic.episodes.length && (
+        episode.number < comic.episodes.length ? (
           <a
             class="button"
             href={`${base}/comics/${comic.id}/episodes/${episode.number + 1}`}
           >
+            次の話
+          </a>
+        ) : (
+          <a class="button" disabled>
             次の話
           </a>
         )

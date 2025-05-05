@@ -4,7 +4,7 @@ export interface Comic {
   id: string;
   title: string;
   description?: string;
-  ext: string;
+  thumbnailExt: string;
   updatedAt: Date;
   episodes: Episode[];
 }

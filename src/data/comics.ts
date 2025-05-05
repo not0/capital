@@ -5,7 +5,7 @@ export const comics: Comic[] = [
     id: "1",
     title: "女子カバディ部",
     description: "なんか企画で描いたやつ。",
-    ext: "gif",
+    thumbnailExt: "gif",
     updatedAt: new Date("2025-01-01T00:00:00+09:00"),
     episodes: [],
   },
@@ -13,18 +13,18 @@ export const comics: Comic[] = [
     id: "2",
     title: "南極伝説",
     description: "なんか北極伝説みたいな漫画に対抗して描いた記憶がある。",
-    ext: "png",
+    thumbnailExt: "png",
     updatedAt: new Date("2025-01-02T00:00:00+09:00"),
     episodes: [
       {
         number: 1,
         title: "第1話",
-        ext: "gif",
+        thumbnailExt: "gif",
       },
       {
         number: 2,
         title: "第2話",
-        ext: "gif",
+        thumbnailExt: "gif",
       }
     ]
   },
@@ -32,7 +32,7 @@ export const comics: Comic[] = [
     id: "10",
     title: "ノトデンジセカンドインプレッションで描いたやつ",
     description: "いつぞやのコミティアで出した",
-    ext: "png",
+    thumbnailExt: "png",
     updatedAt: new Date("2025-01-02T00:00:00+09:00"),
     episodes: [],
   },
@@ -40,7 +40,7 @@ export const comics: Comic[] = [
     id: "12",
     title: "超絶最強バトル漫画集",
     description: "マウス本でコミティアで出したやつ",
-    ext: "png",
+    thumbnailExt: "png",
     updatedAt: new Date("2025-01-03T00:00:00+09:00"),
     episodes: [],
   },

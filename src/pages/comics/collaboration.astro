@@ -3,7 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import List from "../../components/comics/List.astro";
 import { getComicsByCategory } from "../../models/comic";
 
-const comics = getComicsByCategory("original").sort(
+const comics = getComicsByCategory("collaboration").sort(
   (a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()
 );
 
@@ -16,8 +16,10 @@ const base = import.meta.env.BASE_URL;
       <h1 class="title is-4">漫画一覧</h1>
       <div class="tabs">
         <ul>
-          <li class="is-active"><a>自作</a></li>
-          <li><a href={`${base}comics/collaboration`}>合作</a></li>
+          <li>
+            <a href={`${base}comics`}>自作</a>
+          </li>
+          <li class="is-active"><a>合作</a></li>
         </ul>
       </div>
       <List comics={comics} />

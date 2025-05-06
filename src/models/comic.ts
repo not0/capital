@@ -1,12 +1,13 @@
-
 import { comics } from "../data/comics";
-import type { Comic } from "../types/comic";
+import type { Comic, ComicCategory } from "../types/comic";
 import type { Episode } from "../types/episode";
-
-
 
 export function getAllComics(): Comic[] {
   return comics;
+}
+
+export function getComicsByCategory(category: ComicCategory): Comic[] {
+  return comics.filter((c) => c.category === category);
 }
 
 export function getComicById(id: string): Comic | undefined {

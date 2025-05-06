@@ -1,0 +1,29 @@
+---
+const { comics } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="columns is-multiline">
+  {
+    comics.map((comic) => (
+      <div class="column is-one-third" key={comic.id}>
+        <div class="card">
+          <a class="card-link" href={`${base}comics/${comic.id}`}>
+            <div class="card-image">
+              <figure class="image is-3by2">
+                <img
+                  src={`${base}assets/comics/${comic.id}/thumbnail.${comic.thumbnailExt}`}
+                  alt={comic.title}
+                />
+              </figure>
+            </div>
+            <div class="card-content">
+              <p class="title is-6">{comic.title}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    ))
+  }
+</div>

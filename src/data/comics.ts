@@ -7,6 +7,7 @@ export const comics: Comic[] = [
     description: "なんか企画で描いたやつ",
     thumbnailExt: "gif",
     updatedAt: new Date("2025-01-01T00:00:00+09:00"),
+    category: "original",
     episodes: [],
   },
   {
@@ -15,6 +16,7 @@ export const comics: Comic[] = [
     description: "",
     thumbnailExt: "gif",
     updatedAt: new Date("2025-01-05T00:00:00+09:00"),
+    category: "original",
     episodes: [],
   },
   {
@@ -23,6 +25,7 @@ export const comics: Comic[] = [
     description: "一日で描いてコミティアで配った漫画",
     thumbnailExt: "png",
     updatedAt: new Date("2025-01-11T00:00:00+09:00"),
+    category: "original",
     episodes: [],
   },
   {
@@ -31,6 +34,7 @@ export const comics: Comic[] = [
     description: "2014年末に複数人で1000P漫画を描く企画で描いた",
     thumbnailExt: "png",
     updatedAt: new Date("2025-01-08T00:00:00+09:00"),
+    category: "original",
     episodes: [
       {
         number: 1,
@@ -95,6 +99,7 @@ export const comics: Comic[] = [
     description:
       "2014年末にみんなで1000P漫画を描く企画をやったときに描いた連作",
     thumbnailExt: "png",
+    category: "original",
     updatedAt: new Date("2025-01-06T00:00:00+09:00"),
     episodes: [],
   },
@@ -103,6 +108,7 @@ export const comics: Comic[] = [
     title: "ノトデンジセカンドインプレッション",
     description: "ノトデンジというサークルで描いたもの",
     thumbnailExt: "png",
+    category: "original",
     updatedAt: new Date("2025-01-02T00:00:00+09:00"),
     episodes: [],
   },
@@ -111,6 +117,7 @@ export const comics: Comic[] = [
     title: "裏サンデーの企画に投稿した漫画",
     description: "リリース前のゲームのPR企画。地味に賞金をもらった",
     thumbnailExt: "png",
+    category: "original",
     updatedAt: new Date("2025-01-09T00:00:00+09:00"),
     episodes: [],
   },
@@ -119,6 +126,7 @@ export const comics: Comic[] = [
     title: "超絶最強バトル漫画集",
     description: "週刊少年マウスという組織でコミティアに出したもの",
     thumbnailExt: "png",
+    category: "original",
     updatedAt: new Date("2025-01-04T00:00:00+09:00"),
     episodes: [],
   },
@@ -127,6 +135,7 @@ export const comics: Comic[] = [
     title: "王＜キング＞こども将棋",
     description: "ビッグサイトで将棋大会へ向かうこともだちを横目に描いた作品",
     thumbnailExt: "jpeg",
+    category: "original",
     updatedAt: new Date("2025-01-10T00:00:00+09:00"),
     episodes: [],
   },
@@ -135,6 +144,7 @@ export const comics: Comic[] = [
     title: "妖怪バスターズZ",
     description: "",
     thumbnailExt: "png",
+    category: "original",
     updatedAt: new Date("2025-01-12T10:00:00+09:00"),
     episodes: [],
   },
@@ -143,6 +153,7 @@ export const comics: Comic[] = [
     title: "究極兵器アルティメットサンライズ",
     description: "本格SF",
     thumbnailExt: "png",
+    category: "original",
     updatedAt: new Date("2025-01-13T00:00:00+09:00"),
     episodes: [
       {
@@ -173,6 +184,7 @@ export const comics: Comic[] = [
     description:
       "COMITIA126で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
     thumbnailExt: "png",
+    category: "collaboration",
     updatedAt: new Date("2025-01-14T00:00:00+09:00"),
     episodes: [],
   },
@@ -182,6 +194,7 @@ export const comics: Comic[] = [
     description:
       "COMITIA127で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
     thumbnailExt: "png",
+    category: "collaboration",
     updatedAt: new Date("2025-01-15T00:00:00+09:00"),
     episodes: [],
   },
@@ -191,6 +204,7 @@ export const comics: Comic[] = [
     description:
       "COMITIA128で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
     thumbnailExt: "png",
+    category: "collaboration",
     updatedAt: new Date("2025-01-16T00:00:00+09:00"),
     episodes: [
       {
@@ -226,6 +240,7 @@ export const comics: Comic[] = [
     description:
       "COMITIA131で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
     thumbnailExt: "png",
+    category: "collaboration",
     updatedAt: new Date("2025-01-17T00:00:00+09:00"),
     episodes: [],
   },
@@ -234,6 +249,7 @@ export const comics: Comic[] = [
     title: "爆ぜろ!!ロボトム",
     description: "",
     thumbnailExt: "webp",
+    category: "original",
     updatedAt: new Date("2025-05-05T00:00:00+09:00"),
     episodes: [],
   },

@@ -86,7 +86,10 @@ const pagePaths = pages.map((name) => {
   }
 </style>
 
-<button class="close-button" onclick="window.location.href = '/comics/${id}'"
+<button
+  class="close-button"
+  onclick="window.dispatchEvent(new CustomEvent('closeViewer'))"
+>
   >閉じる</button
 >
 <div class="viewer" id="viewer" data-id="{id}"></div>

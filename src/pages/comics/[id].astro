@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getAllComics, getComicById } from "../../models/comic";
 import Pages from "../../components/comics/Pages.astro";
 import Episodes from "../../components/comics/Episodes.astro";
+import Viewer from "@components/comics/Viewer.astro";
 
 export async function getStaticPaths() {
   const comics = getAllComics();
@@ -21,6 +22,14 @@ const comic =
 const base = import.meta.env.BASE_URL;
 ---
 
+<style>
+  #viewer-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+  }
+</style>
+
 <BaseLayout title={`${comic.title}`}>
   <section class="section">
     <div class="container has-text-centered">
@@ -28,6 +37,23 @@ const base = import.meta.env.BASE_URL;
       <h2 class="subtitle is-6">{comic.description}</h2>
     </div>
   </section>
+
+  <button class="button" id="open-viewer">読む</button>
+
+  <div id="viewer-wrapper" style="display: none;">
+    <Viewer comicId={comic.id} />
+  </div>
+
+  <script>
+    const wrapper = document.getElementById("viewer-wrapper");
+    document.getElementById("open-viewer").addEventListener("click", () => {
+      wrapper.style.display = "block";
+    });
+
+    window.addEventListener("closeViewer", () => {
+      wrapper.style.display = "none";
+    });
+  </script>
 
   {
     comic.episodes.length > 0 ? (

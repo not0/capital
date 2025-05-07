@@ -1,0 +1,26 @@
+---
+import Viewer from "@components/comics/Viewer.astro";
+import { getAllComics, getComicById } from "@models/comic";
+
+const { id } = Astro.params;
+const comic = getComicById(id);
+if (!comic) throw new Error("Comic not found");
+
+export async function getStaticPaths() {
+  const comics = getAllComics();
+  return comics.map((comic) => ({
+    params: { id: String(comic.id) },
+  }));
+}
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{comic.title}</title>
+  </head>
+  <body>
+    <Viewer comicId={comic.id} />
+  </body>
+</html>

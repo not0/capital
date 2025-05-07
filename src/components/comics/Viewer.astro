@@ -53,8 +53,15 @@ const pagePaths = pages.map((name) => {
   }
   .page {
     max-height: 100%;
-    max-width: 50%;
     object-fit: contain;
+  }
+
+  .page.single {
+    max-width: 100%;
+  }
+
+  .page.spread {
+    max-width: 50%;
   }
   .overlay {
     position: fixed;
@@ -83,6 +90,14 @@ const pagePaths = pages.map((name) => {
   >閉じる</button
 >
 <div class="viewer" id="viewer" data-id="{id}"></div>
+
+<template id="page-single-template">
+  <img class="page single" />
+</template>
+<template id="page-spread-template">
+  <img class="page spread" />
+</template>
+
 <div class="overlay">
   <div class="click-zone" id="left"></div>
   <div class="click-zone" id="right"></div>
@@ -97,9 +112,9 @@ const pagePaths = pages.map((name) => {
 <script>
   (async function () {
     const viewer = document.getElementById("viewer");
-    const id = viewer.dataset.id;
-    const raw = document.getElementById("page-data").textContent;
-    const pages = JSON.parse(raw);
+    const singleTemplate = document.getElementById("page-single-template");
+    const spreadTemplate = document.getElementById("page-spread-template");
+    const pages = JSON.parse(document.getElementById("page-data").textContent);
     let index = 0;
 
     function isSpread() {
@@ -108,13 +123,13 @@ const pagePaths = pages.map((name) => {
 
     function render() {
       viewer.innerHTML = "";
-      const showPages = isSpread() ? 2 : 1;
+      const step = isSpread() ? 2 : 1;
+      const tmpl = step === 1 ? singleTemplate : spreadTemplate;
       const start = index;
-      const end = Math.min(index + showPages, pages.length);
+      const end = Math.min(index + step, pages.length);
       for (let i = end - 1; i >= start; i--) {
-        const img = document.createElement("img");
+        const img = tmpl.content.firstElementChild.cloneNode(true);
         img.src = `${pages[i]}`;
-        img.className = "page";
         viewer.appendChild(img);
       }
     }

@@ -7,6 +7,7 @@
 
   let index = 0;
   let showNavbar = false;
+  let isForward = true;
 
   function isSpread() {
     return window.innerWidth >= 1024;
@@ -17,6 +18,7 @@
     if (index + step < pages.length) {
       index += step;
       showNavbar = false;
+      isForward = true;
     }
   }
 
@@ -25,6 +27,7 @@
     if (index - step >= 0) {
       index -= step;
       showNavbar = false;
+      isForward = false;
     }
   }
 
@@ -48,9 +51,13 @@
 <svelte:window on:resize={handleResize} />
 
 {#if open}
-  <div class="viewer-container" in:fly={{ x: -300 }} out:fly={{ x: 300 }}>
+  <div class="viewer-container">
     {#key index}
-      <div class="page-frame" in:fly={{ x: -300 }} out:fly={{ x: 300 }}>
+      <div
+        class="page-frame"
+        in:fly={{ x: isForward ? -300 : 300 }}
+        out:fly={{ x: isForward ? 300 : -300 }}
+      >
         {#each displayPages as page}
           <img
             class={isSpread() ? "page spread" : "page single"}

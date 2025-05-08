@@ -8,6 +8,7 @@ export const comics: Comic[] = [
     thumbnailExt: "gif",
     updatedAt: new Date("2025-01-01T00:00:00+09:00"),
     category: "original",
+    viewer: "horizontal",
     episodes: [],
   },
   {
@@ -17,6 +18,7 @@ export const comics: Comic[] = [
     thumbnailExt: "gif",
     updatedAt: new Date("2025-01-05T00:00:00+09:00"),
     category: "original",
+    viewer: "vertical",
     episodes: [],
   },
   {
@@ -26,6 +28,7 @@ export const comics: Comic[] = [
     thumbnailExt: "png",
     updatedAt: new Date("2025-01-11T00:00:00+09:00"),
     category: "original",
+    viewer: "vertical",
     episodes: [],
   },
   {
@@ -35,6 +38,7 @@ export const comics: Comic[] = [
     thumbnailExt: "png",
     updatedAt: new Date("2025-01-08T00:00:00+09:00"),
     category: "original",
+    viewer: "vertical",
     episodes: [
       {
         number: 1,
@@ -100,6 +104,7 @@ export const comics: Comic[] = [
       "2014年末にみんなで1000P漫画を描く企画をやったときに描いた連作",
     thumbnailExt: "png",
     category: "original",
+    viewer: "vertical",
     updatedAt: new Date("2025-01-06T00:00:00+09:00"),
     episodes: [],
   },
@@ -109,6 +114,7 @@ export const comics: Comic[] = [
     description: "ノトデンジというサークルで描いたもの",
     thumbnailExt: "png",
     category: "original",
+    viewer: "vertical",
     updatedAt: new Date("2025-01-02T00:00:00+09:00"),
     episodes: [],
   },
@@ -118,6 +124,7 @@ export const comics: Comic[] = [
     description: "リリース前のゲームのPR企画。地味に賞金をもらった",
     thumbnailExt: "png",
     category: "original",
+    viewer: "vertical",
     updatedAt: new Date("2025-01-09T00:00:00+09:00"),
     episodes: [],
   },
@@ -127,6 +134,7 @@ export const comics: Comic[] = [
     description: "週刊少年マウスという組織でコミティアに出したもの",
     thumbnailExt: "png",
     category: "original",
+    viewer: "vertical",
     updatedAt: new Date("2025-01-04T00:00:00+09:00"),
     episodes: [],
   },
@@ -136,6 +144,7 @@ export const comics: Comic[] = [
     description: "ビッグサイトで将棋大会へ向かうこともだちを横目に描いた作品",
     thumbnailExt: "jpeg",
     category: "original",
+    viewer: "vertical",
     updatedAt: new Date("2025-01-10T00:00:00+09:00"),
     episodes: [],
   },
@@ -145,6 +154,7 @@ export const comics: Comic[] = [
     description: "",
     thumbnailExt: "png",
     category: "original",
+    viewer: "vertical",
     updatedAt: new Date("2025-01-12T10:00:00+09:00"),
     episodes: [],
   },
@@ -154,6 +164,7 @@ export const comics: Comic[] = [
     description: "本格SF",
     thumbnailExt: "png",
     category: "original",
+    viewer: "vertical",
     updatedAt: new Date("2025-01-13T00:00:00+09:00"),
     episodes: [
       {
@@ -185,6 +196,7 @@ export const comics: Comic[] = [
       "COMITIA126で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
     thumbnailExt: "png",
     category: "collaboration",
+    viewer: "vertical",
     updatedAt: new Date("2025-01-14T00:00:00+09:00"),
     episodes: [],
   },
@@ -195,6 +207,7 @@ export const comics: Comic[] = [
       "COMITIA127で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
     thumbnailExt: "png",
     category: "collaboration",
+    viewer: "vertical",
     updatedAt: new Date("2025-01-15T00:00:00+09:00"),
     episodes: [],
   },
@@ -205,6 +218,7 @@ export const comics: Comic[] = [
       "COMITIA128で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
     thumbnailExt: "png",
     category: "collaboration",
+    viewer: "vertical",
     updatedAt: new Date("2025-01-16T00:00:00+09:00"),
     episodes: [
       {
@@ -241,6 +255,7 @@ export const comics: Comic[] = [
       "COMITIA131で出した本の完全合法無料公開版です。ハンサムボーイとの共著です。",
     thumbnailExt: "png",
     category: "collaboration",
+    viewer: "vertical",
     updatedAt: new Date("2025-01-17T00:00:00+09:00"),
     episodes: [],
   },
@@ -250,6 +265,7 @@ export const comics: Comic[] = [
     description: "",
     thumbnailExt: "webp",
     category: "original",
+    viewer: "vertical",
     updatedAt: new Date("2025-05-05T00:00:00+09:00"),
     episodes: [],
   },

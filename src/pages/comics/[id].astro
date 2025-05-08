@@ -33,15 +33,16 @@ const pages = getPagePaths(comic.id);
     </div>
   </section>
 
-  <ViewerLauncher client:only="svelte" pages={pages} />
-
   {
     comic.episodes.length > 0 ? (
       <Episodes comic={comic} />
-    ) : (
+    ) : comic.viewer === "vertical" ? (
       <Pages comicId={id} />
+    ) : (
+      <ViewerLauncher client:only="svelte" pages={pages} />
     )
   }
+
   <div class="buttons is-centered pb-6">
     <a class="button" href={`${base}comics`}> 一覧に戻る </a>
   </div>

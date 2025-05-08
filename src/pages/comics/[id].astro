@@ -1,9 +1,9 @@
 ---
-import { getPagePaths } from "../../utils/getPagePaths";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getAllComics, getComicById } from "../../models/comic";
-import Pages from "../../components/comics/Pages.astro";
-import Episodes from "../../components/comics/Episodes.astro";
+import { getPagePaths } from "@utils/getPagePaths";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getAllComics, getComicById } from "@models/comic";
+import Pages from "@components/comics/Pages.astro";
+import Episodes from "@components/comics/Episodes.astro";
 import ViewerLauncher from "@components/comics/ViewerLauncher.svelte";
 
 export async function getStaticPaths() {

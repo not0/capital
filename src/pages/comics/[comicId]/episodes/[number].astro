@@ -1,11 +1,11 @@
 ---
-import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import {
   getAllComics,
   getComicById,
   getEpisodeByComicIdAndNumber,
-} from "../../../../models/comic";
-import Pages from "../../../../components/comics/Pages.astro";
+} from "@models/comic";
+import Pages from "@components/comics/Pages.astro";
 
 export async function getStaticPaths() {
   const comics = getAllComics();

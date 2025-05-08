@@ -13,8 +13,17 @@
       "@components/*": [
         "src/components/*"
       ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
       "@models/*": [
         "src/models/*"
+      ],
+      "@types/*": [
+        "src/types/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
       ],
     }
   }

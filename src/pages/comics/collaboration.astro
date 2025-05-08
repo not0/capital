@@ -1,7 +1,7 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import List from "../../components/comics/List.astro";
-import { getComicsByCategory } from "../../models/comic";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import List from "@components/comics/List.astro";
+import { getComicsByCategory } from "@models/comic";
 
 const comics = getComicsByCategory("collaboration").sort(
   (a, b) => b.updatedAt.getTime() - a.updatedAt.getTime()

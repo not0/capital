@@ -4,6 +4,7 @@
   export let onClose = () => {};
 
   let index = 0;
+  let showNavbar = false;
 
   function isSpread() {
     return window.innerWidth >= 1024;
@@ -13,6 +14,7 @@
     const step = isSpread() ? 2 : 1;
     if (index + step < pages.length) {
       index += step;
+      showNavbar = false;
     }
   }
 
@@ -20,11 +22,12 @@
     const step = isSpread() ? 2 : 1;
     if (index - step >= 0) {
       index -= step;
+      showNavbar = false;
     }
   }
 
-  function close() {
-    window.dispatchEvent(new CustomEvent("closeViewer"));
+  function toggleNavbar() {
+    showNavbar = !showNavbar;
   }
 
   $: displayPages = (() => {
@@ -52,12 +55,18 @@
       />
     {/each}
 
-    <div class="click-overlay">
-      <div class="zone" on:click={next}></div>
-      <div class="zone" on:click={prev}></div>
-    </div>
+    {#if showNavbar}
+      <div class="navbar">
+        <button on:click={onClose}>閉じる</button>
+        <span>{index + 1} / {pages.length}</span>
+      </div>
+    {/if}
 
-    <button class="close-button" on:click={onClose}>閉じる</button>
+    <div class="click-overlay">
+      <div class="zone" on:click|stopPropagation={next}></div>
+      <div class="zone" on:click|stopPropagation={toggleNavbar}></div>
+      <div class="zone" on:click|stopPropagation={prev}></div>
+    </div>
   </div>
 {/if}
 
@@ -99,14 +108,17 @@
     cursor: pointer;
   }
 
-  .close-button {
+  .navbar {
     position: fixed;
-    top: 16px;
-    left: 16px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     z-index: 10;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 4px 8px;
-    border: none;
-    cursor: pointer;
   }
 </style>

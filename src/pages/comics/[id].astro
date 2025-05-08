@@ -1,6 +1,5 @@
 ---
-import fs from "fs";
-import path from "path";
+import { getPagePaths } from "../../utils/getPagePaths";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getAllComics, getComicById } from "../../models/comic";
 import Pages from "../../components/comics/Pages.astro";
@@ -23,25 +22,7 @@ const comic =
 
 const base = import.meta.env.BASE_URL;
 
-const pagesBase = `assets/comics/${comic.id}/pages`;
-
-const pagesDir = path.resolve(`./public/${pagesBase}`);
-let pages: string[] = [];
-try {
-  pages = fs.readdirSync(pagesDir).sort();
-} catch (err) {
-  console.error(`Error reading images for comic ID ${comic.id}:`, err);
-}
-
-if (pages.length === 0) {
-  throw new Error(
-    `No images found for comic ID ${comic.id} in directory ${pagesDir}`
-  );
-}
-
-const pagePaths = pages.map((name) => {
-  return `${base}${pagesBase}/${name}`;
-});
+const pages = getPagePaths(comic.id);
 ---
 
 <BaseLayout title={`${comic.title}`}>
@@ -52,7 +33,7 @@ const pagePaths = pages.map((name) => {
     </div>
   </section>
 
-  <ViewerLauncher client:only="svelte" pages={pagePaths} />
+  <ViewerLauncher client:only="svelte" pages={pages} />
 
   {
     comic.episodes.length > 0 ? (

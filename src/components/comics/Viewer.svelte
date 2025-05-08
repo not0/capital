@@ -1,4 +1,6 @@
 <script>
+  import { fade, fly } from "svelte/transition";
+
   export let pages = [];
   export let open = false;
   export let onClose = () => {};
@@ -46,14 +48,18 @@
 <svelte:window on:resize={handleResize} />
 
 {#if open}
-  <div class="viewer-container">
-    {#each displayPages as page}
-      <img
-        class={isSpread() ? "page spread" : "page single"}
-        src={`${page}`}
-        alt={page}
-      />
-    {/each}
+  <div class="viewer-container" in:fly={{ x: -300 }} out:fly={{ x: 300 }}>
+    {#key index}
+      <div class="page-frame" in:fly={{ x: -300 }} out:fly={{ x: 300 }}>
+        {#each displayPages as page}
+          <img
+            class={isSpread() ? "page spread" : "page single"}
+            src={`${page}`}
+            alt={page}
+          />
+        {/each}
+      </div>
+    {/key}
 
     {#if showNavbar}
       <div class="navbar">
@@ -80,6 +86,14 @@
     background: black;
     overflow: hidden;
     z-index: 1000;
+  }
+
+  .page-frame {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .page {

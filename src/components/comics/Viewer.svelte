@@ -2,11 +2,11 @@
   import { fade, fly } from "svelte/transition";
 
   export let pages = [];
-  export let open = false;
-  export let onClose = () => {};
+  export let baseUrl = "";
+  export let closeUrl = null;
 
   let index = 0;
-  let showNavbar = false;
+  let showNavbar = true;
   let isForward = true;
 
   function isSpread() {
@@ -35,6 +35,14 @@
     showNavbar = !showNavbar;
   }
 
+  function onClose() {
+    if (closeUrl) {
+      window.location.href = closeUrl;
+    } else {
+      window.history.back();
+    }
+  }
+
   $: displayPages = (() => {
     const step = isSpread() ? 2 : 1;
     const start = index;
@@ -50,38 +58,39 @@
 
 <svelte:window on:resize={handleResize} />
 
-{#if open}
-  <div class="viewer-container">
-    {#key index}
-      <div
-        class="page-frame"
-        in:fly={{ x: isForward ? -300 : 300 }}
-        out:fly={{ x: isForward ? 300 : -300 }}
-      >
-        {#each displayPages as page}
-          <img
-            class={isSpread() ? "page spread" : "page single"}
-            src={`${page}`}
-            alt={page}
-          />
-        {/each}
-      </div>
-    {/key}
-
-    {#if showNavbar}
-      <div class="navbar">
-        <button on:click={onClose}>閉じる</button>
-        <span>{index + 1} / {pages.length}</span>
-      </div>
-    {/if}
-
-    <div class="click-overlay">
-      <div class="zone" on:click|stopPropagation={next}></div>
-      <div class="zone" on:click|stopPropagation={toggleNavbar}></div>
-      <div class="zone" on:click|stopPropagation={prev}></div>
+<div class="viewer-container">
+  {#key index}
+    <div
+      class="page-frame"
+      in:fly={{ x: isForward ? -300 : 300 }}
+      out:fly={{ x: isForward ? 300 : -300 }}
+    >
+      {#each displayPages as page}
+        <img
+          class={isSpread() ? "page spread" : "page single"}
+          src={`${page}`}
+          alt={page}
+        />
+      {/each}
     </div>
+  {/key}
+
+  {#if showNavbar}
+    <nav class="navbar is-black">
+      <div class="navbar-brand">
+        <button class="navbar-item" on:click={onClose}>閉じる</button>
+        <a class="navbar-item" href={`${baseUrl}comics`}>漫画</a>
+        <span class="navbar-item">{index + 1} / {pages.length}</span>
+      </div>
+    </nav>
+  {/if}
+
+  <div class="click-overlay">
+    <div class="zone" on:click|stopPropagation={next}></div>
+    <div class="zone" on:click|stopPropagation={toggleNavbar}></div>
+    <div class="zone" on:click|stopPropagation={prev}></div>
   </div>
-{/if}
+</div>
 
 <style>
   .viewer-container {

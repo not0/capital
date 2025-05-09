@@ -2,8 +2,8 @@
   import { fade, fly } from "svelte/transition";
 
   export let comic = null;
+  export let thumbnail = null;
   export let pages = [];
-  export let baseUrl = "";
   export let closeUrl = null;
 
   let index = 0;
@@ -72,6 +72,9 @@
             <div class="container has-text-centered">
               <h1 class="title is-3 is-spaced">{comic.title}</h1>
               <h2 class="subtitle is-6">{comic.description}</h2>
+              <figure class="image is-3by2">
+                <img src={thumbnail} />
+              </figure>
             </div>
           </section>
         </div>
@@ -91,7 +94,6 @@
     <nav class="navbar is-black">
       <div class="navbar-brand">
         <button class="navbar-item" on:click={onClose}>閉じる</button>
-        <a class="navbar-item" href={`${baseUrl}comics`}>漫画</a>
         <span class="navbar-item">{index + 1} / {pages.length}</span>
       </div>
     </nav>

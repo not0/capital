@@ -1,10 +1,9 @@
 ---
-import { getPagePaths } from "@utils/getPagePaths";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getAllComics, getComicById } from "@models/comic";
 import Pages from "@components/comics/Pages.astro";
 import Episodes from "@components/comics/Episodes.astro";
-import Viewer from "@components/comics/Viewer.svelte";
+import ViewerWrapper from "@components/comics/ViewerWrapper.astro";
 
 export async function getStaticPaths() {
   const comics = getAllComics();
@@ -21,8 +20,6 @@ const comic =
   })();
 
 const base = import.meta.env.BASE_URL;
-
-const pages = getPagePaths(comic.id);
 ---
 
 <BaseLayout title={`${comic.title}`}>
@@ -39,12 +36,7 @@ const pages = getPagePaths(comic.id);
     ) : comic.viewer === "vertical" ? (
       <Pages comicId={id} />
     ) : (
-      <Viewer
-        client:only="svelte"
-        pages={pages}
-        baseUrl={base}
-        closeUrl={`${base}comics`}
-      />
+      <ViewerWrapper comic={comic} closeUrl={`${base}comics`} />
     )
   }
 

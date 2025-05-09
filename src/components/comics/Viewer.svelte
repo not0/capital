@@ -1,6 +1,7 @@
 <script>
   import { fade, fly } from "svelte/transition";
 
+  export let comic = null;
   export let pages = [];
   export let baseUrl = "";
   export let closeUrl = null;
@@ -65,13 +66,24 @@
       in:fly={{ x: isForward ? -300 : 300 }}
       out:fly={{ x: isForward ? 300 : -300 }}
     >
-      {#each displayPages as page}
-        <img
-          class={isSpread() ? "page spread" : "page single"}
-          src={`${page}`}
-          alt={page}
-        />
-      {/each}
+      {#if index === 0}
+        <div class="intro-page">
+          <section class="section">
+            <div class="container has-text-centered">
+              <h1 class="title is-3 is-spaced">{comic.title}</h1>
+              <h2 class="subtitle is-6">{comic.description}</h2>
+            </div>
+          </section>
+        </div>
+      {:else}
+        {#each displayPages as page}
+          <img
+            class={isSpread() ? "page spread" : "page single"}
+            src={`${page}`}
+            alt={page}
+          />
+        {/each}
+      {/if}
     </div>
   {/key}
 
@@ -110,6 +122,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .intro-page {
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    box-sizing: border-box;
   }
 
   .page {

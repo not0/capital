@@ -1,4 +1,5 @@
 ---
+import { getThumbnailPath } from "@utils/comicImage";
 const { comics } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
@@ -12,10 +13,7 @@ const base = import.meta.env.BASE_URL;
           <a class="card-link" href={`${base}comics/${comic.id}`}>
             <div class="card-image">
               <figure class="image is-3by2">
-                <img
-                  src={`${base}assets/comics/${comic.id}/thumbnail.${comic.thumbnailExt}`}
-                  alt={comic.title}
-                />
+                <img src={getThumbnailPath(comic)} alt={comic.title} />
               </figure>
             </div>
             <div class="card-content">

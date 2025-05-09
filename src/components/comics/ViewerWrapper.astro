@@ -1,0 +1,17 @@
+---
+import Viewer from "@components/comics/Viewer.svelte";
+import { getPagePaths } from "@utils/comicImage";
+
+const { comic, closeUrl } = Astro.props;
+
+const baseUrl = import.meta.env.BASE_URL;
+const pages = getPagePaths(comic.id);
+---
+
+<Viewer
+  client:only="svelte"
+  comic={comic}
+  pages={pages}
+  baseUrl={baseUrl}
+  closeUrl={closeUrl}
+/>

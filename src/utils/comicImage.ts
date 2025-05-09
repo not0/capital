@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import type { Comic } from "@types/comic";
 
 export function getPagePaths(
   comicId: string,
@@ -27,4 +28,10 @@ export function getPagePaths(
   return pages.map((name) => {
     return `${base}${pagesBase}/${name}`;
   });
+}
+
+export function getThumbnailPath(comic: Comic, episodeNumber?: string): string {
+  const base = import.meta.env.BASE_URL;
+  const dir = episodeNumber ? `episodes/${episodeNumber}/` : "";
+  return `${base}assets/comics/${comic.id}/${dir}thumbnail.${comic.thumbnailExt}`;
 }

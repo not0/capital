@@ -30,6 +30,7 @@
     if (newIndex < 0) {
       newIndex = 0;
     }
+
     if (isSpread()) {
       if (newIndex > 1) {
         if (startSide === "left" && newIndex % 2 === 1) {
@@ -39,8 +40,8 @@
         }
       }
     }
-    index = newIndex;
 
+    index = newIndex;
     showNavbar = index === 0 ? true : false;
   }
 
@@ -130,7 +131,15 @@
   {#if showNavbar}
     <nav class="navbar is-black">
       <div class="navbar-brand">
-        <button class="navbar-item" on:click={onClose}>閉じる</button>
+        <div class="navbar-item">
+          <div class="buttons">
+            <button class="button" on:click={onClose}>
+              <strong>戻る</strong>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="navbar-end">
         <span class="navbar-item">{index + 1} / {pages.length}</span>
       </div>
     </nav>

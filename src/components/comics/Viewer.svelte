@@ -202,7 +202,7 @@
   .intro-page {
     width: 100%;
     height: 100%;
-    background: white;
+    background: url("/assets/lined_paper.png") repeat;
     display: flex;
     flex-direction: column;
     text-align: center;

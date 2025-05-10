@@ -269,4 +269,14 @@ export const comics: Comic[] = [
     updatedAt: new Date("2025-05-05T00:00:00+09:00"),
     episodes: [],
   },
+  {
+    id: "21",
+    title: "CRAP!",
+    description: "COMITIA145で頒布した漫画です。",
+    thumbnailExt: "webp",
+    category: "original",
+    viewer: "horizontal",
+    updatedAt: new Date("2025-05-10T00:00:00+09:00"),
+    episodes: [],
+  },
 ];

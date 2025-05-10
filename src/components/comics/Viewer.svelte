@@ -114,12 +114,6 @@
                 <figure class="image is-3by2">
                   <img src={thumbnail} />
                 </figure>
-                <div class="start-hint">
-                  <span class="icon arrow">
-                    <i class="fas fa-arrow-left"></i>
-                  </span>
-                  <div class="hint-text">左側クリックで読み始める</div>
-                </div>
               </div>
             </section>
           </div>
@@ -151,10 +145,34 @@
     </nav>
   {/if}
 
-  <div class="click-overlay">
-    <div class="zone" on:click|stopPropagation={next}></div>
-    <div class="zone" on:click|stopPropagation={toggleNavbar}></div>
-    <div class="zone" on:click|stopPropagation={prev}></div>
+  <div class="click-overlay" class:intro={index === 0}>
+    <div class="zone left" on:click|stopPropagation={next}>
+      {#if index === 0}
+        <div class="zone-content">
+          <span class="icon is-large">
+            <i class="fas fa-arrow-left fa-2x"></i>
+          </span>
+          <div class="zone-text">次へ進む</div>
+        </div>
+      {/if}
+    </div>
+    <div class="zone center" on:click|stopPropagation={toggleNavbar}>
+      {#if index === 0}
+        <div class="zone-content">
+          <div class="zone-text">中央クリックでメニュー表示</div>
+        </div>
+      {/if}
+    </div>
+    <div class="zone right" on:click|stopPropagation={prev}>
+      {#if index === 0}
+        <div class="zone-content">
+          <div class="zone-text">前に戻る</div>
+          <span class="icon is-large">
+            <i class="fas fa-arrow-right fa-2x"></i>
+          </span>
+        </div>
+      {/if}
+    </div>
   </div>
 </div>
 
@@ -211,57 +229,74 @@
     z-index: 5;
   }
 
+  .click-overlay.intro {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
   .zone {
     flex: 1;
     cursor: pointer;
-  }
-
-  .start-hint {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    margin-top: 2rem;
-    padding: 1rem;
-    gap: 1rem;
-    animation: pulse 2s infinite;
+    justify-content: center;
+    transition: background-color 0.2s;
   }
 
-  .arrow {
-    font-size: 2rem;
-    color: #666;
-    animation: slide 1s infinite;
+  .click-overlay.intro .zone:hover {
+    background: rgba(0, 0, 0, 0.05);
   }
 
-  .hint-text {
-    font-size: 1.2rem;
-    color: #666;
+  .zone-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .zone.left .zone-content {
+    margin-right: auto;
+    margin-left: 0.5rem;
+  }
+
+  .zone.right .zone-content {
+    margin-left: auto;
+    margin-right: 0.5rem;
+    flex-direction: row-reverse;
+  }
+
+  .zone.center .zone-content {
+    padding: 0.5rem 1rem;
+    font-size: 0.85em;
+    opacity: 0.7;
+  }
+
+  .zone-text {
+    color: #444;
     font-weight: 500;
+    white-space: nowrap;
+    font-size: clamp(0.8rem, 3vw, 1rem);
   }
 
-  @keyframes pulse {
-    0% {
-      opacity: 0.7;
+  @media (max-width: 640px) {
+    .zone-content {
+      padding: 0.5rem 0.8rem;
+      gap: 0.3rem;
     }
-    50% {
-      opacity: 1;
+    .icon.is-large {
+      font-size: 1.2rem;
     }
-    100% {
-      opacity: 0.7;
+    .zone.left .zone-content,
+    .zone.right .zone-content {
+      margin-left: 0.3rem;
+      margin-right: 0.3rem;
     }
-  }
-
-  @keyframes slide {
-    0% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(-10px);
-    }
-    100% {
-      transform: translateX(0);
+    .zone.center .zone-content {
+      display: none;
     }
   }
-
   .navbar {
     position: fixed;
     top: 0;

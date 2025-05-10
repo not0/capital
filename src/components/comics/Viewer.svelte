@@ -152,7 +152,7 @@
           <span class="icon is-large">
             <i class="fas fa-arrow-left fa-2x"></i>
           </span>
-          <div class="zone-text">次へ進む</div>
+          <div class="zone-text">次へ</div>
         </div>
       {/if}
     </div>
@@ -163,10 +163,13 @@
         </div>
       {/if}
     </div>
-    <div class="zone right" on:click|stopPropagation={index === 0 ? undefined : prev}>
+    <div
+      class="zone right"
+      on:click|stopPropagation={index === 0 ? undefined : prev}
+    >
       {#if index === 0}
         <div class="zone-content disabled">
-          <div class="zone-text">前に戻る</div>
+          <div class="zone-text">前へ</div>
           <span class="icon is-large">
             <i class="fas fa-arrow-right fa-2x"></i>
           </span>
@@ -276,10 +279,22 @@
     flex-direction: row-reverse;
   }
 
+  .zone.center {
+    position: relative;
+  }
+
   .zone.center .zone-content {
+    position: absolute;
+    bottom: 2rem;
     padding: 0.5rem 1rem;
     font-size: 0.85em;
+    opacity: 0.5;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .click-overlay.intro .zone.center:hover .zone-content {
     opacity: 0.7;
+    background: rgba(255, 255, 255, 0.9);
   }
 
   .zone-text {

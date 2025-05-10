@@ -1,35 +1,57 @@
 <script lang="ts">
+  import type { Comic } from "@types/comic";
   import { fade, fly } from "svelte/transition";
 
-  export let comic = null;
-  export let thumbnail = null;
-  export let pages = [];
-  export let closeUrl = null;
+  export let comic: Comic;
+  export let thumbnail: string;
+  export let pages: string[];
+  export let closeUrl: string | null = null;
 
   let index = 0;
   let showNavbar = true;
   let isForward = true;
 
+  const startSide = comic.startSide || "left";
+
   function isSpread() {
+    if (index === 0 || (startSide === "left" && index === 1)) {
+      return false;
+    }
     return window.innerWidth >= 1024;
   }
 
   function move(step: number) {
-    const newIndex = index + step;
-    console.log("newIndex", newIndex);
-    if (newIndex <= pages.length) {
-      index = newIndex > 0 ? newIndex : 0;
-      showNavbar = index === 0 ? true : false;
-      isForward = step > 0;
+    let newIndex = index + step;
+
+    if (newIndex > pages.length) {
+      return;
     }
+
+    if (newIndex < 0) {
+      newIndex = 0;
+    }
+    if (isSpread()) {
+      if (newIndex > 1) {
+        if (startSide === "left" && newIndex % 2 === 1) {
+          newIndex = newIndex - 1;
+        } else if (startSide === "right" && newIndex % 2 === 0) {
+          newIndex = newIndex - 1;
+        }
+      }
+    }
+    index = newIndex;
+
+    showNavbar = index === 0 ? true : false;
   }
 
   function next() {
+    isForward = true;
     move(displayItems.length);
   }
 
   function prev() {
-    move(-displayItems.length);
+    isForward = false;
+    move(-1);
   }
 
   function toggleNavbar() {

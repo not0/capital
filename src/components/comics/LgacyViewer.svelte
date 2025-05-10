@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import { fade, fly } from "svelte/transition";
 
   export let comic = null;
@@ -14,22 +14,22 @@
     return window.innerWidth >= 1024;
   }
 
-  function move(step: number) {
-    const newIndex = index + step;
-    console.log("newIndex", newIndex);
-    if (newIndex <= pages.length) {
-      index = newIndex > 0 ? newIndex : 0;
-      showNavbar = index === 0 ? true : false;
-      isForward = step > 0;
+  function next() {
+    const step = isSpread() ? 2 : 1;
+    if (index + step < pages.length) {
+      index += step;
+      showNavbar = false;
+      isForward = true;
     }
   }
 
-  function next() {
-    move(displayItems.length);
-  }
-
   function prev() {
-    move(-displayItems.length);
+    const step = isSpread() ? 2 : 1;
+    if (index - step >= 0) {
+      index -= step;
+      showNavbar = false;
+      isForward = false;
+    }
   }
 
   function toggleNavbar() {
@@ -44,26 +44,11 @@
     }
   }
 
-  type DisplayItem = {
-    type: "intro" | "page";
-    value: string;
-  };
-  let displayItems: DisplayItem[] = [];
-  $: displayItems = (() => {
-    if (index === 0) {
-      return [{ type: "intro", value: "" }];
-    } else {
-      const step = isSpread() ? 2 : 1;
-      const start = index - 1;
-      const end = Math.min(start + step, pages.length);
-      return pages
-        .slice(start, end)
-        .reverse()
-        .map((page) => ({
-          type: "page",
-          value: page,
-        }));
-    }
+  $: displayPages = (() => {
+    const step = isSpread() ? 2 : 1;
+    const start = index;
+    const end = Math.min(index + step, pages.length);
+    return pages.slice(start, end).reverse();
   })();
 
   function handleResize() {
@@ -81,27 +66,27 @@
       in:fly={{ x: isForward ? -300 : 300 }}
       out:fly={{ x: isForward ? 300 : -300 }}
     >
-      {#each displayItems as item}
-        {#if item.type === "intro"}
-          <div class="intro-page">
-            <section class="section">
-              <div class="container has-text-centered">
-                <h1 class="title is-3 is-spaced">{comic.title}</h1>
-                <h2 class="subtitle is-6">{comic.description}</h2>
-                <figure class="image is-3by2">
-                  <img src={thumbnail} />
-                </figure>
-              </div>
-            </section>
-          </div>
-        {:else if item.type === "page"}
+      {#if index === 0}
+        <div class="intro-page">
+          <section class="section">
+            <div class="container has-text-centered">
+              <h1 class="title is-3 is-spaced">{comic.title}</h1>
+              <h2 class="subtitle is-6">{comic.description}</h2>
+              <figure class="image is-3by2">
+                <img src={thumbnail} />
+              </figure>
+            </div>
+          </section>
+        </div>
+      {:else}
+        {#each displayPages as page}
           <img
             class={isSpread() ? "page spread" : "page single"}
-            src={`${item.value}`}
-            alt={item.value}
+            src={`${page}`}
+            alt={page}
           />
-        {:else}{/if}
-      {/each}
+        {/each}
+      {/if}
     </div>
   {/key}
 

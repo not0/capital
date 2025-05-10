@@ -8,7 +8,7 @@ export const comics: Comic[] = [
     thumbnailExt: "gif",
     updatedAt: new Date("2025-01-01T00:00:00+09:00"),
     category: "original",
-    viewer: "horizontal",
+    viewer: "vertical",
     episodes: [],
   },
   {

@@ -294,11 +294,15 @@
   .zone.left .zone-content {
     margin-right: auto;
     margin-left: 0.5rem;
+    margin-top: 15vh;
+    padding: 0.5rem;
   }
 
   .zone.right .zone-content {
     margin-left: auto;
     margin-right: 0.5rem;
+    margin-top: 15vh;
+    padding: 0.5rem;
     flex-direction: row-reverse;
   }
 

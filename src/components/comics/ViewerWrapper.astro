@@ -1,0 +1,21 @@
+---
+import Viewer from "@components/comics/Viewer.svelte";
+import type { Comic } from "@types/comic";
+import { getPagePaths, getThumbnailPath } from "@utils/comicImage";
+
+const { comic, episodeNumber, closeUrl } = Astro.props as {
+  comic: Comic;
+  episodeNumber?: string;
+  closeUrl: string;
+};
+
+const pages = getPagePaths(comic.id, episodeNumber);
+---
+
+<Viewer
+  client:only="svelte"
+  comic={comic}
+  thumbnail={getThumbnailPath(comic)}
+  pages={pages}
+  closeUrl={closeUrl}
+/>

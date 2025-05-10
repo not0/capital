@@ -1,8 +1,9 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getAllComics, getComicById } from "../../models/comic";
-import Pages from "../../components/comics/Pages.astro";
-import Episodes from "../../components/comics/Episodes.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getAllComics, getComicById } from "@models/comic";
+import Pages from "@components/comics/Pages.astro";
+import Episodes from "@components/comics/Episodes.astro";
+import ViewerWrapper from "@components/comics/ViewerWrapper.astro";
 
 export async function getStaticPaths() {
   const comics = getAllComics();
@@ -32,10 +33,13 @@ const base = import.meta.env.BASE_URL;
   {
     comic.episodes.length > 0 ? (
       <Episodes comic={comic} />
-    ) : (
+    ) : comic.viewer === "vertical" ? (
       <Pages comicId={id} />
+    ) : (
+      <ViewerWrapper comic={comic} closeUrl={`${base}comics`} />
     )
   }
+
   <div class="buttons is-centered pb-6">
     <a class="button" href={`${base}comics`}> 一覧に戻る </a>
   </div>

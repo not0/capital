@@ -1,6 +1,6 @@
 import { comics } from "../data/comics";
-import type { Comic, ComicCategory } from "../types/comic";
-import type { Episode } from "../types/episode";
+import type { Comic, ComicCategory } from "@types/comic";
+import type { Episode } from "@types/episode";
 
 export function getAllComics(): Comic[] {
   return comics;

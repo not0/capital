@@ -1,5 +1,6 @@
 ---
-import { getEpisodesByComicId } from "../../models/comic";
+import { getEpisodesByComicId } from "@models/comic";
+import { getThumbnailPath } from "@utils/comicImage";
 
 const { comic } = Astro.props;
 const base = import.meta.env.BASE_URL;
@@ -21,7 +22,7 @@ const episodes = getEpisodesByComicId(comic.id);
                 <div class="card-image">
                   <figure class="image is-3by2">
                     <img
-                      src={`${base}assets/comics/${comic.id}//episodes/${episode.number}/thumbnail.${episode.thumbnailExt}`}
+                      src={getThumbnailPath(comic, episode.number)}
                       alt={episode.title}
                     />
                   </figure>

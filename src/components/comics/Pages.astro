@@ -1,29 +1,12 @@
 ---
-import fs from "fs";
-import path from "path";
+import { getPagePaths } from "@utils/comicImage";
 const { comicId, episodeNumber } = Astro.props as {
   comicId: string;
   episodeNumber?: string;
 };
 const base = import.meta.env.BASE_URL;
 
-const pagesPath = episodeNumber
-  ? `assets/comics/${comicId}/episodes/${episodeNumber}/pages`
-  : `assets/comics/${comicId}/pages`;
-
-const pagesDir = path.resolve(`./public/${pagesPath}`);
-let pages: string[] = [];
-try {
-  pages = fs.readdirSync(pagesDir).sort();
-} catch (err) {
-  console.error(`Error reading images for comic ID ${comicId}:`, err);
-}
-
-if (pages.length === 0) {
-  throw new Error(
-    `No images found for comic ID ${comicId} in directory ${pagesDir}`
-  );
-}
+const pages = getPagePaths(comicId, episodeNumber);
 ---
 
 <style>
@@ -35,7 +18,7 @@ if (pages.length === 0) {
 
 <div class="container" style="max-width: 800px;">
   {
-    pages.map((name: string, idx: number) => (
+    pages.map((path: string, idx: number) => (
       <div class="image-wrapper">
         <div
           class="skeleton-block"
@@ -43,8 +26,7 @@ if (pages.length === 0) {
           style="height: 70vh;"
         />
         <img
-          src={`${base}${pagesPath}/${name}`}
-          alt={name}
+          src={`${path}`}
           loading="lazy"
           style="width: 100%; display: block;"
           onload={`document.getElementById('skeleton-${idx}').style.display='none';`}

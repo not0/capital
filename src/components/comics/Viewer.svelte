@@ -163,9 +163,9 @@
         </div>
       {/if}
     </div>
-    <div class="zone right" on:click|stopPropagation={prev}>
+    <div class="zone right" on:click|stopPropagation={index === 0 ? undefined : prev}>
       {#if index === 0}
-        <div class="zone-content">
+        <div class="zone-content disabled">
           <div class="zone-text">前に戻る</div>
           <span class="icon is-large">
             <i class="fas fa-arrow-right fa-2x"></i>
@@ -242,8 +242,17 @@
     transition: background-color 0.2s;
   }
 
+  .zone-content.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   .click-overlay.intro .zone:hover {
     background: rgba(0, 0, 0, 0.05);
+  }
+
+  .click-overlay.intro .zone.right:hover {
+    background: transparent;
   }
 
   .zone-content {

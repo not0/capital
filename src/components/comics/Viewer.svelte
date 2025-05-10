@@ -204,11 +204,34 @@
     height: 100%;
     background: white;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     text-align: center;
-    padding: 2rem;
+    padding: 4rem 2rem;
     box-sizing: border-box;
+  }
+
+  .intro-page .container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .intro-page .title {
+    margin-bottom: 1rem;
+  }
+
+  .intro-page .image {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .intro-page .image img {
+    width: 100%;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 
   .page {

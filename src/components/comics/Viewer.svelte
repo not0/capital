@@ -114,6 +114,12 @@
                 <figure class="image is-3by2">
                   <img src={thumbnail} />
                 </figure>
+                <div class="start-hint">
+                  <span class="icon arrow">
+                    <i class="fas fa-arrow-left"></i>
+                  </span>
+                  <div class="hint-text">左側クリックで読み始める</div>
+                </div>
               </div>
             </section>
           </div>
@@ -208,6 +214,52 @@
   .zone {
     flex: 1;
     cursor: pointer;
+  }
+
+  .start-hint {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 2rem;
+    padding: 1rem;
+    gap: 1rem;
+    animation: pulse 2s infinite;
+  }
+
+  .arrow {
+    font-size: 2rem;
+    color: #666;
+    animation: slide 1s infinite;
+  }
+
+  .hint-text {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: 500;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-10px);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
 
   .navbar {

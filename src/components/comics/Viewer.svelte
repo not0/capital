@@ -146,7 +146,7 @@
   {/if}
 
   <div class="click-overlay" class:intro={index === 0}>
-    <div class="zone left" on:click|stopPropagation={next}>
+    <button class="zone left" on:click|stopPropagation={next}>
       {#if index === 0}
         <div class="zone-content">
           <span class="icon is-large">
@@ -155,15 +155,15 @@
           <div class="zone-text">次へ</div>
         </div>
       {/if}
-    </div>
-    <div class="zone center" on:click|stopPropagation={toggleNavbar}>
+    </button>
+    <button class="zone center" on:click|stopPropagation={toggleNavbar}>
       {#if index === 0}
         <div class="zone-content">
           <div class="zone-text">中央タップでメニュー開閉</div>
         </div>
       {/if}
-    </div>
-    <div
+    </button>
+    <button
       class="zone right"
       on:click|stopPropagation={index === 0 ? undefined : prev}
     >
@@ -175,7 +175,7 @@
           </span>
         </div>
       {/if}
-    </div>
+    </button>
   </div>
 </div>
 

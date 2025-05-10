@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Comic } from "@types/comic";
   import { fade, fly } from "svelte/transition";
+  const baseUrl = import.meta.env.BASE_URL;
 
   export let comic: Comic;
   export let thumbnail: string;
@@ -106,7 +107,10 @@
     >
       {#each displayItems as item}
         {#if item.type === "intro"}
-          <div class="intro-page">
+          <div
+            class="intro-page"
+            style={`background: url('${baseUrl}assets/lined_paper.png') repeat; `}
+          >
             <section class="section">
               <div class="container has-text-centered">
                 <h1 class="title is-3 is-spaced">{comic.title}</h1>
@@ -202,7 +206,6 @@
   .intro-page {
     width: 100%;
     height: 100%;
-    background: url("/assets/lined_paper.png") repeat;
     display: flex;
     flex-direction: column;
     text-align: center;

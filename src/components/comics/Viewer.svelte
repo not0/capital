@@ -261,11 +261,31 @@
 
   .zone {
     flex: 1;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s;
+    appearance: none;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .click-overlay.intro .zone:not(.right):hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .zone-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 15vh;
+    padding: 0.7rem 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.2s ease;
   }
 
   .zone-content.disabled {
@@ -273,26 +293,9 @@
     cursor: not-allowed;
   }
 
-  .click-overlay.intro .zone:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  .click-overlay.intro .zone.right:hover {
-    background: transparent;
-  }
-
-  .zone-content {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1rem;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
   @keyframes pulse {
-    0% {
+    0%,
+    100% {
       opacity: 0.9;
       transform: scale(1);
     }
@@ -300,23 +303,17 @@
       opacity: 1;
       transform: scale(1.07);
     }
-    100% {
-      opacity: 0.9;
-      transform: scale(1);
-    }
   }
 
   .zone.left .zone-content {
     margin-right: auto;
     margin-left: 0.5rem;
-    margin-top: 15vh;
     animation: pulse 2s ease-in-out infinite;
   }
 
   .zone.right .zone-content {
     margin-left: auto;
     margin-right: 0.5rem;
-    margin-top: 15vh;
     flex-direction: row-reverse;
   }
 
@@ -324,17 +321,19 @@
     position: relative;
   }
 
+  .zone.center {
+    pointer-events: auto;
+  }
+
   .zone.center .zone-content {
     position: absolute;
     bottom: 5vh;
     padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.7);
     font-size: 0.85em;
     opacity: 0.5;
-    background: rgba(255, 255, 255, 0.7);
     transform: translateY(1rem);
-    transition:
-      transform 0.2s ease-out,
-      opacity 0.2s ease-out;
+    transition: all 0.2s ease-out;
   }
 
   .click-overlay.intro .zone.center:hover .zone-content {
@@ -345,9 +344,9 @@
 
   .zone-text {
     color: #444;
+    font-size: clamp(0.8rem, 3vw, 1rem);
     font-weight: 500;
     white-space: nowrap;
-    font-size: clamp(0.8rem, 3vw, 1rem);
   }
 
   @media (max-width: 640px) {
@@ -355,19 +354,22 @@
       padding: 0.5rem 0.8rem;
       gap: 0.3rem;
     }
-    .icon.is-large {
-      font-size: 1.2rem;
-    }
+
     .zone.left .zone-content,
     .zone.right .zone-content {
-      margin-left: 0.3rem;
-      margin-right: 0.3rem;
+      margin: 15vh 0.3rem 0;
     }
+
     .zone.center .zone-content {
       bottom: 3vh;
       font-size: 0.75em;
     }
+
+    .icon.is-large {
+      font-size: 1.2rem;
+    }
   }
+
   .navbar {
     position: fixed;
     top: 0;

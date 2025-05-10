@@ -159,7 +159,7 @@
     <div class="zone center" on:click|stopPropagation={toggleNavbar}>
       {#if index === 0}
         <div class="zone-content">
-          <div class="zone-text">中央クリックでメニュー表示</div>
+          <div class="zone-text">中央タップでメニュー開閉</div>
         </div>
       {/if}
     </div>
@@ -326,16 +326,21 @@
 
   .zone.center .zone-content {
     position: absolute;
-    bottom: 2rem;
+    bottom: 5vh;
     padding: 0.5rem 1rem;
     font-size: 0.85em;
     opacity: 0.5;
     background: rgba(255, 255, 255, 0.7);
+    transform: translateY(1rem);
+    transition:
+      transform 0.2s ease-out,
+      opacity 0.2s ease-out;
   }
 
   .click-overlay.intro .zone.center:hover .zone-content {
     opacity: 0.7;
     background: rgba(255, 255, 255, 0.9);
+    transform: translateY(0);
   }
 
   .zone-text {
@@ -359,7 +364,8 @@
       margin-right: 0.3rem;
     }
     .zone.center .zone-content {
-      display: none;
+      bottom: 3vh;
+      font-size: 0.75em;
     }
   }
   .navbar {

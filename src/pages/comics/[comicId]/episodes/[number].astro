@@ -6,6 +6,7 @@ import {
   getEpisodeByComicIdAndNumber,
 } from "@models/comic";
 import Pages from "@components/comics/Pages.astro";
+import ViewerWrapper from "@components/comics/ViewerWrapper.astro";
 
 export async function getStaticPaths() {
   const comics = getAllComics();
@@ -55,7 +56,17 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 
-  <Pages comicId={comicId} episodeNumber={number} />
+  {
+    comic.viewer === "vertical" ? (
+      <Pages comicId={comicId} episodeNumber={number} />
+    ) : (
+      <ViewerWrapper
+        comic={comic}
+        episodeNumber={number}
+        closeUrl={`${base}comics/${comic.id}`}
+      />
+    )
+  }
 
   <div class="buttons is-centered pb-6">
     {

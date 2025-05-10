@@ -291,18 +291,32 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
+  @keyframes pulse {
+    0% {
+      opacity: 0.9;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.07);
+    }
+    100% {
+      opacity: 0.9;
+      transform: scale(1);
+    }
+  }
+
   .zone.left .zone-content {
     margin-right: auto;
     margin-left: 0.5rem;
     margin-top: 15vh;
-    padding: 0.5rem;
+    animation: pulse 2s ease-in-out infinite;
   }
 
   .zone.right .zone-content {
     margin-left: auto;
     margin-right: 0.5rem;
     margin-top: 15vh;
-    padding: 0.5rem;
     flex-direction: row-reverse;
   }
 

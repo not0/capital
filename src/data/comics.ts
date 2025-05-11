@@ -2,16 +2,6 @@ import type { Comic } from "@types/comic";
 
 export const comics: Comic[] = [
   {
-    id: "1",
-    title: "女子カバディ部",
-    description: "なんか企画で描いたやつ",
-    thumbnailExt: "gif",
-    updatedAt: new Date("2025-01-01T00:00:00+09:00"),
-    category: "original",
-    viewer: "vertical",
-    episodes: [],
-  },
-  {
     id: "4",
     title: "機動ロボットエンドレスダーク",
     description: "",

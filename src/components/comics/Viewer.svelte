@@ -180,18 +180,15 @@
         type="range"
         min="0"
         max={pages.length + 1}
-        value={index}
+        value={pages.length + 1 - index}
         on:input={(e) => {
-          const newIndex = parseInt(e.currentTarget.value);
+          const invertedValue = parseInt(e.currentTarget.value);
+          const newIndex = pages.length + 1 - invertedValue;
           const diff = newIndex - index;
           move(diff);
         }}
         step="1"
       />
-      <div class="seekbar-labels">
-        <span>はじめ</span>
-        <span>おわり</span>
-      </div>
     </div>
   {/if}
 
@@ -456,13 +453,37 @@
   .seekbar input[type="range"] {
     width: 100%;
     margin: 0;
+    /* Webkit (Chrome, Safari, Edge など) 用のスタイル */
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    height: 8px;
   }
 
-  .seekbar-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    padding: 0 4px;
+  /* つまみのスタイル */
+  .seekbar input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  /* Firefox用のスタイル */
+  .seekbar input[type="range"]::-moz-range-track {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    height: 8px;
+  }
+
+  .seekbar input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
   }
 
   .finish-page {

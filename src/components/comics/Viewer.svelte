@@ -25,18 +25,22 @@
     return index === 0;
   }
 
-  function move(step: number) {
-    let newIndex = index + step;
+  function isFinishPage(index: number) {
+    return index > pages.length;
+  }
 
-    if (newIndex > pages.length) {
+  function move(step: number) {
+    if (isFinishPage(index) && step > 0) {
       return;
     }
+
+    let newIndex = index + step;
 
     if (newIndex < 0) {
       newIndex = 0;
     }
 
-    if (isSpread()) {
+    if (isSpread() && !isFinishPage(newIndex)) {
       if (newIndex > 1) {
         if (startSide === "left" && newIndex % 2 === 1) {
           newIndex = newIndex - 1;
@@ -47,7 +51,7 @@
     }
 
     index = newIndex;
-    showNavbar = isIntroPage(index);
+    showNavbar = isIntroPage(index) || isFinishPage(index);
   }
 
   function next() {
@@ -73,13 +77,15 @@
   }
 
   type DisplayItem = {
-    type: "intro" | "page";
+    type: "intro" | "page" | "finish";
     value: string;
   };
   let displayItems: DisplayItem[] = [];
   $: displayItems = (() => {
     if (isIntroPage(index)) {
       return [{ type: "intro", value: "" }];
+    } else if (isFinishPage(index)) {
+      return [{ type: "finish", value: "" }];
     } else {
       const step = isSpread() ? 2 : 1;
       const start = index - 1;
@@ -125,13 +131,29 @@
               </div>
             </section>
           </div>
+        {:else if item.type === "finish"}
+          <div
+            class="finish-page"
+            style={`background: url('${baseUrl}assets/lined_paper.png') repeat; `}
+          >
+            <section class="section">
+              <div class="container has-text-centered">
+                <h1 class="title is-3 is-spaced">{comic.title}</h1>
+                <div class="buttons is-centered mt-6">
+                  <button class="button is-medium" on:click={onClose}>
+                    <span>一覧に戻る</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
         {:else if item.type === "page"}
           <img
             class={isSpread() ? "page spread" : "page single"}
             src={`${item.value}`}
             alt={item.value}
           />
-        {:else}{/if}
+        {/if}
       {/each}
     </div>
   {/key}
@@ -153,9 +175,9 @@
     </nav>
   {/if}
 
-  <div class="click-overlay" class:intro={index === 0}>
+  <div class="click-overlay">
     <button class="zone left" on:click|stopPropagation={next}>
-      {#if index === 0}
+      {#if isIntroPage(index)}
         <div class="zone-content">
           <span class="icon is-large">
             <i class="fas fa-arrow-left fa-2x"></i>
@@ -164,8 +186,12 @@
         </div>
       {/if}
     </button>
-    <button class="zone center" on:click|stopPropagation={toggleNavbar}>
-      {#if index === 0}
+    <button
+      class="zone center"
+      class:is-finish={isFinishPage(index)}
+      on:click|stopPropagation={toggleNavbar}
+    >
+      {#if isIntroPage(index)}
         <div class="zone-content">
           <div class="zone-text">中央タップでメニュー開閉</div>
         </div>
@@ -175,7 +201,7 @@
       class="zone right"
       on:click|stopPropagation={index === 0 ? undefined : prev}
     >
-      {#if index === 0}
+      {#if isIntroPage(index)}
         <div class="zone-content disabled">
           <div class="zone-text">前へ</div>
           <span class="icon is-large">
@@ -260,6 +286,7 @@
     display: flex;
     justify-content: space-between;
     z-index: 5;
+    pointer-events: none;
   }
 
   .click-overlay.intro {
@@ -277,6 +304,7 @@
     padding: 0;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    pointer-events: auto;
   }
 
   .click-overlay.intro .zone:not(.right):hover {
@@ -328,10 +356,6 @@
     position: relative;
   }
 
-  .zone.center {
-    pointer-events: auto;
-  }
-
   .zone.center .zone-content {
     position: absolute;
     bottom: 5vh;
@@ -341,6 +365,10 @@
     opacity: 0.5;
     transform: translateY(1rem);
     transition: all 0.2s ease-out;
+  }
+
+  .zone.center.is-finish {
+    pointer-events: none;
   }
 
   .click-overlay.intro .zone.center:hover .zone-content {
@@ -389,5 +417,25 @@
     justify-content: space-between;
     align-items: center;
     z-index: 10;
+  }
+
+  .finish-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 4rem 2rem;
+    box-sizing: border-box;
+    color: #333;
+  }
+
+  .finish-page .container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .finish-page .title {
+    margin-bottom: 1rem;
   }
 </style>

@@ -13,6 +13,14 @@
   let isForward = true;
 
   const startSide = comic.startSide || "left";
+  const PREFETCH_COUNT = 4; // 先読みするページ数
+
+  function prefetchImage(url: string) {
+    if (typeof window !== "undefined") {
+      const img = new Image();
+      img.src = url;
+    }
+  }
 
   function isSpread() {
     if (isIntroPage(index) || (startSide === "left" && index === 1)) {
@@ -93,6 +101,17 @@
       const step = isSpread() ? 2 : 1;
       const start = index - 1;
       const end = Math.min(start + step, pages.length);
+
+      // 先読み
+      const prefetchStart = end;
+      const prefetchEnd = Math.min(
+        prefetchStart + PREFETCH_COUNT,
+        pages.length
+      );
+      for (let i = prefetchStart; i < prefetchEnd; i++) {
+        prefetchImage(pages[i]);
+      }
+
       return pages
         .slice(start, end)
         .reverse()

@@ -279,4 +279,14 @@ export const comics: Comic[] = [
     updatedAt: new Date("2025-05-10T00:00:00+09:00"),
     episodes: [],
   },
+  {
+    id: "22",
+    title: "妖怪の子",
+    description: "COMITIA146で頒布した漫画です。",
+    thumbnailExt: "webp",
+    category: "original",
+    viewer: "horizontal",
+    updatedAt: new Date("2025-05-11T00:00:00+09:00"),
+    episodes: [],
+  },
 ];

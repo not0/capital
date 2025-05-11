@@ -306,7 +306,8 @@
   }
 
   .page {
-    max-height: 100%;
+    height: 100%;
+    width: auto;
     object-fit: contain;
   }
 

@@ -289,4 +289,14 @@ export const comics: Comic[] = [
     updatedAt: new Date("2025-05-11T00:00:00+09:00"),
     episodes: [],
   },
+  {
+    id: "23",
+    title: "銀河怪盗エキソプラネット",
+    description: "COMITIA149で頒布した漫画です。",
+    thumbnailExt: "webp",
+    category: "original",
+    viewer: "horizontal",
+    updatedAt: new Date("2025-05-11T01:00:00+09:00"),
+    episodes: [],
+  },
 ];

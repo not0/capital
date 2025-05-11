@@ -18,21 +18,29 @@
     if (index === 0 || (startSide === "left" && index === 1)) {
       return false;
     }
-    return window.innerWidth >= 1024;
+    return window.innerWidth > window.innerHeight * 1.5;
+  }
+
+  function isIntroPage(index: number) {
+    return index === 0;
+  }
+
+  function isFinishPage(index: number) {
+    return index > pages.length;
   }
 
   function move(step: number) {
-    let newIndex = index + step;
-
-    if (newIndex > pages.length) {
+    if (isFinishPage(index) && step > 0) {
       return;
     }
+
+    let newIndex = index + step;
 
     if (newIndex < 0) {
       newIndex = 0;
     }
 
-    if (isSpread()) {
+    if (isSpread() && !isFinishPage(newIndex)) {
       if (newIndex > 1) {
         if (startSide === "left" && newIndex % 2 === 1) {
           newIndex = newIndex - 1;
@@ -43,17 +51,18 @@
     }
 
     index = newIndex;
-    showNavbar = index === 0 ? true : false;
   }
 
   function next() {
     isForward = true;
     move(displayItems.length);
+    showNavbar = isIntroPage(index) || isFinishPage(index);
   }
 
   function prev() {
     isForward = false;
     move(-1);
+    showNavbar = isIntroPage(index) || isFinishPage(index);
   }
 
   function toggleNavbar() {
@@ -69,13 +78,15 @@
   }
 
   type DisplayItem = {
-    type: "intro" | "page";
+    type: "intro" | "page" | "finish";
     value: string;
   };
   let displayItems: DisplayItem[] = [];
   $: displayItems = (() => {
-    if (index === 0) {
+    if (isIntroPage(index)) {
       return [{ type: "intro", value: "" }];
+    } else if (isFinishPage(index)) {
+      return [{ type: "finish", value: "" }];
     } else {
       const step = isSpread() ? 2 : 1;
       const start = index - 1;
@@ -121,13 +132,29 @@
               </div>
             </section>
           </div>
+        {:else if item.type === "finish"}
+          <div
+            class="finish-page"
+            style={`background: url('${baseUrl}assets/lined_paper.png') repeat; `}
+          >
+            <section class="section">
+              <div class="container has-text-centered">
+                <h1 class="title is-3 is-spaced">{comic.title}</h1>
+                <div class="buttons is-centered mt-6">
+                  <button class="button is-medium" on:click={onClose}>
+                    <span>一覧に戻る</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
         {:else if item.type === "page"}
           <img
             class={isSpread() ? "page spread" : "page single"}
             src={`${item.value}`}
             alt={item.value}
           />
-        {:else}{/if}
+        {/if}
       {/each}
     </div>
   {/key}
@@ -147,11 +174,27 @@
         <span class="navbar-item">{index + 1} / {pages.length}</span>
       </div>
     </nav>
+
+    <div class="seekbar">
+      <input
+        type="range"
+        min="0"
+        max={pages.length + 1}
+        value={pages.length + 1 - index}
+        on:input={(e) => {
+          const invertedValue = parseInt(e.currentTarget.value);
+          const newIndex = pages.length + 1 - invertedValue;
+          const diff = newIndex - index;
+          move(diff);
+        }}
+        step="1"
+      />
+    </div>
   {/if}
 
-  <div class="click-overlay" class:intro={index === 0}>
+  <div class="click-overlay">
     <button class="zone left" on:click|stopPropagation={next}>
-      {#if index === 0}
+      {#if isIntroPage(index)}
         <div class="zone-content">
           <span class="icon is-large">
             <i class="fas fa-arrow-left fa-2x"></i>
@@ -160,8 +203,12 @@
         </div>
       {/if}
     </button>
-    <button class="zone center" on:click|stopPropagation={toggleNavbar}>
-      {#if index === 0}
+    <button
+      class="zone center"
+      class:is-finish={isFinishPage(index)}
+      on:click|stopPropagation={toggleNavbar}
+    >
+      {#if isIntroPage(index)}
         <div class="zone-content">
           <div class="zone-text">中央タップでメニュー開閉</div>
         </div>
@@ -171,7 +218,7 @@
       class="zone right"
       on:click|stopPropagation={index === 0 ? undefined : prev}
     >
-      {#if index === 0}
+      {#if isIntroPage(index)}
         <div class="zone-content disabled">
           <div class="zone-text">前へ</div>
           <span class="icon is-large">
@@ -256,6 +303,7 @@
     display: flex;
     justify-content: space-between;
     z-index: 5;
+    pointer-events: none;
   }
 
   .click-overlay.intro {
@@ -273,6 +321,7 @@
     padding: 0;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    pointer-events: auto;
   }
 
   .click-overlay.intro .zone:not(.right):hover {
@@ -324,19 +373,19 @@
     position: relative;
   }
 
-  .zone.center {
-    pointer-events: auto;
-  }
-
   .zone.center .zone-content {
     position: absolute;
-    bottom: 5vh;
+    bottom: calc(64px + 5vh); /* シークバーの高さ + 余白 */
     padding: 0.5rem 1rem;
     background: rgba(255, 255, 255, 0.7);
     font-size: 0.85em;
     opacity: 0.5;
     transform: translateY(1rem);
     transition: all 0.2s ease-out;
+  }
+
+  .zone.center.is-finish {
+    pointer-events: none;
   }
 
   .click-overlay.intro .zone.center:hover .zone-content {
@@ -364,7 +413,7 @@
     }
 
     .zone.center .zone-content {
-      bottom: 3vh;
+      bottom: calc(56px + 3vh); /* モバイルでは少し小さめの値 */
       font-size: 0.75em;
     }
 
@@ -385,5 +434,75 @@
     justify-content: space-between;
     align-items: center;
     z-index: 10;
+  }
+
+  .seekbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 16px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .seekbar input[type="range"] {
+    width: 100%;
+    margin: 0;
+    /* Webkit (Chrome, Safari, Edge など) 用のスタイル */
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    height: 8px;
+  }
+
+  /* つまみのスタイル */
+  .seekbar input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  /* Firefox用のスタイル */
+  .seekbar input[type="range"]::-moz-range-track {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    height: 8px;
+  }
+
+  .seekbar input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .finish-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 4rem 2rem;
+    box-sizing: border-box;
+    color: #333;
+  }
+
+  .finish-page .container {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .finish-page .title {
+    margin-bottom: 1rem;
   }
 </style>

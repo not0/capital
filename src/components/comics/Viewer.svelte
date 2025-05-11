@@ -15,10 +15,12 @@
   const startSide = comic.startSide || "left";
 
   function isSpread() {
-    if (index === 0 || (startSide === "left" && index === 1)) {
+    if (isIntroPage(index) || (startSide === "left" && index === 1)) {
       return false;
     }
-    return window.innerWidth > window.innerHeight * 1.5;
+    return (
+      window.innerWidth >= 960 || window.innerWidth > window.innerHeight * 1.4
+    );
   }
 
   function isIntroPage(index: number) {

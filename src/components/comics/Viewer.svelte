@@ -375,7 +375,7 @@
 
   .zone.center .zone-content {
     position: absolute;
-    bottom: 5vh;
+    bottom: calc(64px + 5vh); /* シークバーの高さ + 余白 */
     padding: 0.5rem 1rem;
     background: rgba(255, 255, 255, 0.7);
     font-size: 0.85em;
@@ -413,7 +413,7 @@
     }
 
     .zone.center .zone-content {
-      bottom: 3vh;
+      bottom: calc(56px + 3vh); /* モバイルでは少し小さめの値 */
       font-size: 0.75em;
     }
 

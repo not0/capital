@@ -21,6 +21,10 @@
     return window.innerWidth > window.innerHeight * 1.5;
   }
 
+  function isIntroPage(index: number) {
+    return index === 0;
+  }
+
   function move(step: number) {
     let newIndex = index + step;
 
@@ -43,7 +47,7 @@
     }
 
     index = newIndex;
-    showNavbar = index === 0 ? true : false;
+    showNavbar = isIntroPage(index);
   }
 
   function next() {
@@ -74,7 +78,7 @@
   };
   let displayItems: DisplayItem[] = [];
   $: displayItems = (() => {
-    if (index === 0) {
+    if (isIntroPage(index)) {
       return [{ type: "intro", value: "" }];
     } else {
       const step = isSpread() ? 2 : 1;

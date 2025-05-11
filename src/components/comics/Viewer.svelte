@@ -18,7 +18,7 @@
     if (index === 0 || (startSide === "left" && index === 1)) {
       return false;
     }
-    return window.innerWidth >= 1024;
+    return window.innerWidth > window.innerHeight * 1.5;
   }
 
   function move(step: number) {

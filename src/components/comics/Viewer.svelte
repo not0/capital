@@ -51,17 +51,18 @@
     }
 
     index = newIndex;
-    showNavbar = isIntroPage(index) || isFinishPage(index);
   }
 
   function next() {
     isForward = true;
     move(displayItems.length);
+    showNavbar = isIntroPage(index) || isFinishPage(index);
   }
 
   function prev() {
     isForward = false;
     move(-1);
+    showNavbar = isIntroPage(index) || isFinishPage(index);
   }
 
   function toggleNavbar() {
@@ -173,6 +174,25 @@
         <span class="navbar-item">{index + 1} / {pages.length}</span>
       </div>
     </nav>
+
+    <div class="seekbar">
+      <input
+        type="range"
+        min="0"
+        max={pages.length + 1}
+        value={index}
+        on:input={(e) => {
+          const newIndex = parseInt(e.currentTarget.value);
+          const diff = newIndex - index;
+          move(diff);
+        }}
+        step="1"
+      />
+      <div class="seekbar-labels">
+        <span>はじめ</span>
+        <span>おわり</span>
+      </div>
+    </div>
   {/if}
 
   <div class="click-overlay">
@@ -417,6 +437,32 @@
     justify-content: space-between;
     align-items: center;
     z-index: 10;
+  }
+
+  .seekbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 16px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .seekbar input[type="range"] {
+    width: 100%;
+    margin: 0;
+  }
+
+  .seekbar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    padding: 0 4px;
   }
 
   .finish-page {

@@ -4,6 +4,7 @@ import { getAllComics, getComicById } from "@models/comic";
 import Pages from "@components/comics/Pages.astro";
 import Episodes from "@components/comics/Episodes.astro";
 import ViewerWrapper from "@components/comics/ViewerWrapper.astro";
+import { getThumbnailPath } from "@utils/comicImage";
 
 export async function getStaticPaths() {
   const comics = getAllComics();
@@ -23,6 +24,14 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title={`${comic.title}`}>
+  <Fragment slot="og">
+    <meta property="og:title" content={comic.title} />
+    <meta property="og:description" content={comic.description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content={getThumbnailPath(comic)} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </Fragment>
+
   <section class="section">
     <div class="container has-text-centered">
       <h1 class="title is-3 is-spaced">{comic.title}</h1>

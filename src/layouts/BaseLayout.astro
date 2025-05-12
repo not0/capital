@@ -11,7 +11,10 @@ const { title = "" } = Astro.props;
 
     <slot name="og">
       <meta property="og:title" content={title} />
-      <meta property="og:image" content={`${base}assets/top/background.png`} />
+      <meta
+        property="og:image"
+        content={new URL(`${base}assets/top/background.png`, Astro.url)}
+      />
     </slot>
 
     <title>{title}</title>
